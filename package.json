@@ -1,0 +1,19 @@
+{
+  "name": "electronapp",
+  "version": "0.0.1",
+  "description": "Test app",
+  "main": "index.js",
+  "scripts": {
+    "start": "asar pack project app.asar && electron .",
+    "compile": "asar pack project app.asar",
+  	"build-mac": "electron-packager . MyApp --platform=darwin --arch=x64 --version=1.1.1 --ignore=node_modules/electron-* --ignore=project/* --ignore=./*.bat",
+  	"build-win": "electron-packager . MyApp --platform=win32 --arch=ia32 --version=1.1.1 --ignore=node_modules/electron-* --ignore=project/* --ignore=./*.bat",
+  	"build-linux": "electron-packager . MyApp --platform=linux --arch=ia32 --version=1.1.1 --ignore=node_modules/electron-* --ignore=project/* --ignore=./*.bat"
+  },
+  "author": "Ajani James Bilby",
+  "license": "ISC",
+  "devDependencies": {
+    "electron-packager": "^7.0.2",
+    "electron-prebuilt": "^1.1.1"
+  }
+}

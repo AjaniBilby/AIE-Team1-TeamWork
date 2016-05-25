@@ -1,0 +1,1 @@
+var playerClass = new Actor();
