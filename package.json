@@ -4,6 +4,8 @@
   "description": "Test app",
   "main": "index.js",
   "scripts": {
+    "cat": "electron .",
+    "dog": "asar pack project app.asar",
     "start": "asar pack project app.asar && electron .",
     "compile": "asar pack project app.asar",
   	"build-mac": "electron-packager . MyApp --platform=darwin --arch=x64 --version=1.1.1 --ignore=node_modules/electron-* --ignore=project/* --ignore=./*.bat",
