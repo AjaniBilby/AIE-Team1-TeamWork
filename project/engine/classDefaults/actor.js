@@ -39,7 +39,9 @@ Actor = function(actorClass, callback){
   this.controllerId = null;
   this.class = actorClass;
   actors.list.push(this);
-
+  if (typeof(actors.classes[actorClass].EventPlay) == "function"){
+    actors.classes[actorClass].EventPlay(this.id);
+  }
   if (typeof(callback) == "function"){
     callback(this.id);
   }
