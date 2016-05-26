@@ -1,9 +1,9 @@
 var newActorClass = {};
 
 newActorClass.tickEvent = function(){
-  console.log("playerActor Got a tick :D");
+  //console.log("playerActor Got a tick :D");
 }
 
 newActorClass.EventPlay = function(){
-  console.info("Spawned Player");
+  //console.info("Spawned Player");
 }

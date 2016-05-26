@@ -39,7 +39,7 @@ Animation.prototype.update = function(location){
     //Draw defualt pose
     render.AddRender(0, {
       image: this.image,
-      location: {x: location.x, y: location.y},
+      location: location,
       selection: {
         start: {
           x: 0,
@@ -68,7 +68,6 @@ Animation.prototype.update = function(location){
   }
 
   if (typeof(this.animation[playing]) == "object"){
-    console.log(this.image)
     //Draw animation
 
     render.AddRender(0, {

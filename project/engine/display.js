@@ -48,9 +48,11 @@ EventResize();
   Functions
 ------------------------------------------------------------------------------*/
 function WorldToScreen(worldLocation){
-  worldLocation.x -= (camera.location.x - canvas.width/2);
-  worldLocation.y -= (camera.location.y - canvas.height/2);
-  return worldLocation;
+  var temp = {
+    x: worldLocation.x-(camera.location.x-canvas.width/2),
+    y: worldLocation.y-(camera.location.y-canvas.height/2)
+  }
+  return temp;
 };
 
 function ScreenToWorld(screenLocation){

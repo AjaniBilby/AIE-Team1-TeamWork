@@ -19,10 +19,11 @@ render.DrawSection = function(image, location, selection){
       location.y = 0;
     }
   }
+  //location = WorldToScreen(location);
 
   //Draw image
   if (typeof(selection) != "object"){
-    context.drawImage(image, location.x-image.width/2, location.y-image.height/2);
+    context.drawImage(image, WorldToScreen(location).x-image.width/2, WorldToScreen(location).y-image.height/2);
   }else{
     if (typeof(selection.start) != "object"){
       selection.start.x = 0;
@@ -34,7 +35,7 @@ render.DrawSection = function(image, location, selection){
     if (typeof(selection.height) != "number"){
       selection.height = image.height
     }
-    context.drawImage(image, selection.start.x, selection.start.y, selection.width, selection.height, location.x-selection.width/2, location.y-selection.height/2, selection.width, selection.height);
+    context.drawImage(image, selection.start.x, selection.start.y, selection.width, selection.height, WorldToScreen(location).x-selection.width/2, WorldToScreen(location).y-selection.height/2, selection.width, selection.height);
   }
 };
 

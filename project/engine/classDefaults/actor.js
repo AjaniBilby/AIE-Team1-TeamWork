@@ -33,11 +33,9 @@ Actor = function(actorClass, callback){
   //Load class
   if (typeof(actors.classes[actorClass]) != "object"){
     //If class isn't loaded, then load
-    console.log("NOT LOADED CLASS: " + actorClass)
     if (fs.existsSync("./app.asar/content/actors/"+actorClass+".js")){
       LoadJS("./content/actors/"+actorClass+".js", true);
       actors.classes[actorClass] = newActorClass;
-      console.log(newActorClass)
     }
   }
 
@@ -45,8 +43,8 @@ Actor = function(actorClass, callback){
   this.location = new Vector2();
   this.size = new Vector2(165, 120);
   this.rotation = 0;
-  this.velocity = new Vector2();
-  this.animation = new Animation("./content/sprites/ChuckNorrisAnim.png", {x:this.size.x, y:this.size.y});
+  this.velocity = new Vector2(0,0);
+  this.animation = new Animation("./content/sprites/hero.png", {x:this.size.x, y:this.size.y});
   this.id = actors.list.length;
   this.controllerId = null;
   this.class = actorClass;
@@ -65,7 +63,6 @@ Actor.prototype.update = function(){
 }
 
 Actor.prototype.draw = function(){
-  this.animation.update(this.location);
   //this.sprite.draw(context, WorldToScreen(this.location).x, WorldToScreen(this.location).y);
 }
 
@@ -81,13 +78,17 @@ Actor.prototype.GetController = function(id){
   }
 };
 
+function GetActorById(id){
+  return actors.list[id];
+}
+
 AddTickEvent(function(dt){
   for (a=0; a<actors.list.length; a++){
     actors.list[a].update();
-    actors.list[a].draw();
+    actors.list[a].animation.update(actors.list[a].location);
     if (typeof(actors.classes[actors.list[a].class]) != "undefined"){
       if (typeof(actors.classes[actors.list[a].class].tickEvent) == "function"){
-        actors.classes[actors.list[a].class].tickEvent();
+        actors.classes[actors.list[a].class].tickEvent(dt);
       }
     }
   }
