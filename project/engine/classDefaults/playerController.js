@@ -1,4 +1,4 @@
-LoadJS("./engine/inputHandler.js");
+LoadJS("engine/inputHandler.js");
 
 var Controllers = {
   classes: {},

@@ -1,9 +1,9 @@
-LoadJS("./engine/classDefaults/Structures.js");
-LoadJS("./engine/classDefaults/Functions.js");
-LoadJS("./engine/collision.js");
-LoadJS("./engine/render.js");
-LoadJS("./engine/drawSprite.js");
-LoadJS("./engine/classDefaults/actor.js")
+LoadJS("engine/classDefaults/Structures.js");
+LoadJS("engine/classDefaults/Functions.js");
+LoadJS("engine/collision.js");
+LoadJS("engine/render.js");
+LoadJS("engine/drawSprite.js");
+LoadJS("engine/classDefaults/actor.js")
 
 console.log("Running Display")
 

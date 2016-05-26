@@ -1,9 +1,9 @@
-LoadJS("./engine/classDefaults/Functions.js");
-LoadJS("./engine/classDefaults/Structures.js");
-LoadJS("./engine/render.js");
-LoadJS("./engine/animation.js");
-LoadJS("./engine/classDefaults/playerController.js");
-LoadJS("./engine/drawSprite.js");
+LoadJS("engine/classDefaults/Functions.js");
+LoadJS("engine/classDefaults/Structures.js");
+LoadJS("engine/render.js");
+LoadJS("engine/animation.js");
+LoadJS("engine/classDefaults/playerController.js");
+LoadJS("engine/drawSprite.js");
 
 var actors = {
   classes: {},
@@ -30,6 +30,18 @@ function SpawnActor(transform, iclass, callback){
 ---------------------------------------------------------*/
 
 Actor = function(actorClass, callback){
+  //Load class
+  if (typeof(actors.classes[actorClass]) != "object"){
+    //If class isn't loaded, then load
+    console.log("NOT LOADED CLASS: " + actorClass)
+    if (fs.existsSync("./app.asar/content/actors/"+actorClass+".js")){
+      LoadJS("./content/actors/"+actorClass+".js", true);
+      actors.classes[actorClass] = newActorClass;
+      console.log(newActorClass)
+    }
+  }
+
+  //Setup actor defualts
   this.location = new Vector2();
   this.size = new Vector2(165, 120);
   this.rotation = 0;

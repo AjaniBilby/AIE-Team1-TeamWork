@@ -1,4 +1,4 @@
-LoadJS("./engine/render.js");
+LoadJS("engine/render.js");
 
 var Animation = function(src, size){
   this.image = document.createElement("img");

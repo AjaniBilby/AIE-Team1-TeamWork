@@ -1,4 +1,4 @@
-LoadJS("./engine/classDefaults/Functions.js");
+LoadJS("engine/classDefaults/Functions.js");
 
 /*----------------------------------------------------------
   Vector 2 class
