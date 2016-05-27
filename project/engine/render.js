@@ -22,7 +22,7 @@ render.DrawSection = function(image, location, selection){
   //location = WorldToScreen(location);
 
   //Draw image
-  if (typeof(selection) != "object"){
+  if (typeof(selection) != "object" || false){
     context.drawImage(image, WorldToScreen(location).x-image.width/2, WorldToScreen(location).y-image.height/2);
   }else{
     if (typeof(selection.start) != "object"){
@@ -35,7 +35,8 @@ render.DrawSection = function(image, location, selection){
     if (typeof(selection.height) != "number"){
       selection.height = image.height
     }
-    context.drawImage(image, selection.start.x, selection.start.y, selection.width, selection.height, WorldToScreen(location).x-selection.width/2, WorldToScreen(location).y-selection.height/2, selection.width, selection.height);
+    console.log("draw sec", selection.height);
+    context.drawImage(image, 0/*selection.start.x*/, 0/*selection.start.y*/, 126/*selection.width*/, 126/*selection.height*/, 10/*WorldToScreen(location).x-selection.width/2*/, 10/*WorldToScreen(location).y-selection.height/2*/, 10/*selection.width*/, 10/*selection.height*/);
   }
 };
 

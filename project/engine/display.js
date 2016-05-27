@@ -49,15 +49,17 @@ EventResize();
 ------------------------------------------------------------------------------*/
 function WorldToScreen(worldLocation){
   var temp = {
-    x: worldLocation.x-(camera.location.x-canvas.width/2),
-    y: worldLocation.y-(camera.location.y-canvas.height/2)
+    x: parseInt(worldLocation.x-(camera.location.x-canvas.width/2)),
+    y: parseInt(worldLocation.y-(camera.location.y-canvas.height/2))
   }
   return temp;
 };
 
 function ScreenToWorld(screenLocation){
-  screenLocation.x += (camera.location.x - canvas.width/2);
-  screenLocation.y += (camera.location.y - canvas.height/2);
+  var temp = {
+    x: parseInt(screenLocation.x+(camera.location.x - canvas.width/2)),
+    y: parseInt(screenLocation.y+(camera.location.y - canvas.height/2))
+  }
   return screenLocation;
 };
 
@@ -71,8 +73,6 @@ var dt = 0.0;
 var lastTick = Date.now();
 var MAXFRAMECOUNT = 60;
 
-//Create tick Event
-var eventTick = new CustomEvent('EventTick', { 'deltaTime': dt });
 
 function AddTickEvent(ifunction, state){
   if (typeof(state) == "undefined"){
@@ -91,8 +91,8 @@ function run(){
   lastTick = now;
 
   //Fill Background
-  context.fillStyle = "rgba(0, 100, 255, 1)";
-  context.fillRect(0, 0, canvas.width, canvas.height);
+  //context.fillStyle = "rgba(0, 100, 255, 1)";
+  //context.fillRect(0, 0, canvas.width, canvas.height);
 
   if (FileSystem.currentlyLoading > 0){
     //Draw Loading
@@ -128,8 +128,6 @@ function run(){
       render.Draw();
     }
   }
-  //Send out tick
-  canvas.dispatchEvent(eventTick);
 };
 
 //-------------------- Don't modify anything below here

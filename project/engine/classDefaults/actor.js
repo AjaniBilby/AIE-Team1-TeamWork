@@ -11,7 +11,7 @@ var actors = {
 };
 
 function SpawnActor(transform, iclass, callback){
-  //SpawnActor({location: {x:0,y:0}, rotation: 0, size:{x:164,y:124}}, "cat", function(id){console.log("spawned: ",actors.list[id])})
+  //SpawnActor({location: {x:0,y:0}, rotation: 0, size:{x:164,y:124}}, "playerActor")
   //Check that transform is valid
   var temp = new Actor(iclass, function(newActorId){
     actors.list[newActorId].location = transform.location;

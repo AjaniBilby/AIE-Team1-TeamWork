@@ -145,7 +145,3 @@ window.addEventListener('keyup', function(evt){
 
   keyboard.onKeyUp(evt);
 }, false);
-
-canvas.addEventListener('EventInventory', function(evt){
-  console.log("got input message"+evt.Down)
-}, false)
