@@ -22,7 +22,7 @@ render.DrawSection = function(image, location, selection){
   //location = WorldToScreen(location);
 
   //Draw image
-  if (typeof(selection) != "object" || false){
+  if (typeof(selection) != "object"){
     context.drawImage(image, WorldToScreen(location).x-image.width/2, WorldToScreen(location).y-image.height/2);
   }else{
     if (typeof(selection.start) != "object"){

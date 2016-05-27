@@ -121,27 +121,5 @@ Keyboard.prototype.isKeyDown = function(keyCode){
 var keyboard = new Keyboard();
 
 //Handle raw key press and releases
-window.addEventListener('keydown', function(evt){
-  for (var action=0; action<settings.controls.actions.length; action++){
-    for (var key=0; key<settings.controls.actions[action].inputs.length; key++){
-      if (keyboard[settings.controls.actions[action].inputs[key]] == evt.keyCode && keyboard.isKeyDown(keyboard[settings.controls.actions[action].inputs[key]]) != true){
-        console.log("Pressed: " + settings.controls.actions[action].name);
-        var sendEvent = new Event('Event'+settings.controls.actions[action].name, { Down: true });
-        canvas.dispatchEvent(sendEvent);
-      }
-    }
-  }
-
-  keyboard.onKeyDown(evt);
-}, false);
-window.addEventListener('keyup', function(evt){
-  for (var action=0; action<settings.controls.actions.length; action++){
-    for (var key=0; key<settings.controls.actions[action].inputs.length; key++){
-      if (keyboard[settings.controls.actions[action].inputs[key]] == evt.keyCode && keyboard.isKeyDown(keyboard[settings.controls.actions[action].inputs[key]]) != false){
-        console.log("Released: " + settings.controls.actions[action].name);
-      }
-    }
-  }
-
-  keyboard.onKeyUp(evt);
-}, false);
+window.addEventListener('keydown', function(evt){keyboard.onKeyDown(evt);}, false);
+window.addEventListener('keyup', function(evt){keyboard.onKeyUp(evt);}, false);

@@ -4,7 +4,6 @@
     {"name": "MoveUp", "inputs": [{"key": "KEY_W", "value": 1}, {"key": "KEY_S", "value": -1}]}
   ],
   "actions": [
-    {"name": "Inventory", "inputs": ["KEY_I"]},
-    {"name": "Fire", "inputs": ["KEY_SPACE"]}
+    {"name": "Inventory", "inputs": ["KEY_I"]}
   ]
 }

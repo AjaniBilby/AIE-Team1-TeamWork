@@ -41,7 +41,7 @@ Actor = function(actorClass, callback){
 
   //Setup actor defualts
   this.location = new Vector2();
-  this.size = new Vector2(165, 120);
+  this.size = new Vector2(165, 125);
   this.rotation = 0;
   this.velocity = new Vector2(0,0);
   this.animation = new Animation("./content/sprites/hero.png", {x:this.size.x, y:this.size.y});

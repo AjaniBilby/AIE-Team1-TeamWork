@@ -4,10 +4,10 @@ LoadJS("engine/classDefaults/Functions.js");
   Vector 2 class
 ----------------------------------------------------------*/
 var Vector2 = function(x, y){
-  if (x == undefined){
+  if (x == "undefined"){
     x = 0;
   };
-  if (y == undefined){
+  if (y == "undefined"){
     y = 0;
   }
   this.x = x;
