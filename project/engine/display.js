@@ -10,7 +10,7 @@ console.log("Running Display")
 /*------------------------------------------------------------------------------
   Setup Camera
 ------------------------------------------------------------------------------*/
-camera = {
+var camera = {
   location: new Vector2()
 }
 
@@ -48,11 +48,7 @@ EventResize();
   Functions
 ------------------------------------------------------------------------------*/
 function WorldToScreen(worldLocation){
-  var temp = {
-    x: parseInt(worldLocation.x-(camera.location.x-canvas.width/2)),
-    y: parseInt(worldLocation.y-(camera.location.y-canvas.height/2))
-  }
-  return temp;
+  return {x: worldLocation.x-(camera.location.x-canvas.width/2), y: worldLocation.y-(camera.location.y-canvas.height/2)};
 };
 
 function ScreenToWorld(screenLocation){
@@ -91,8 +87,8 @@ function run(){
   lastTick = now;
 
   //Fill Background
-  //context.fillStyle = "rgba(0, 100, 255, 1)";
-  //context.fillRect(0, 0, canvas.width, canvas.height);
+  context.fillStyle = "rgba(0, 100, 255, 1)";
+  context.fillRect(0, 0, canvas.width, canvas.height);
 
   if (FileSystem.currentlyLoading > 0){
     //Draw Loading

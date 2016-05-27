@@ -35,8 +35,9 @@ render.DrawSection = function(image, location, selection){
     if (typeof(selection.height) != "number"){
       selection.height = image.height
     }
-    console.log("draw sec", selection.height);
-    context.drawImage(image, 0/*selection.start.x*/, 0/*selection.start.y*/, 126/*selection.width*/, 126/*selection.height*/, 10/*WorldToScreen(location).x-selection.width/2*/, 10/*WorldToScreen(location).y-selection.height/2*/, 10/*selection.width*/, 10/*selection.height*/);
+
+    var tempLocation = WorldToScreen(location);
+    context.drawImage(image, selection.start.x, selection.start.y, selection.width, selection.height, tempLocation.x-selection.width/2, tempLocation.y-selection.height/2, selection.width, selection.height);
   }
 };
 

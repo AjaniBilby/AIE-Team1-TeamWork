@@ -73,7 +73,7 @@ Actor.prototype.GetController = function(id){
   if (typeof(Controllers.list[id]) == "object"){
     return Controllers.list[id];
   }else{
-    console.log("Cannot Get Controller: "+id);
+    console.error("Cannot Get Controller: "+id);
     return null;
   }
 };

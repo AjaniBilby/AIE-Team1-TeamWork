@@ -8,7 +8,7 @@ var Animation = function(src, size){
   this.frameDuration = 0.2;
   this.currentFrame = 0;
   this.animations = {};
-  this.sectionSize = size;
+  this.sectionSize = new Vector2(size.x, size.y);
 };
 
 Animation.prototype.buildAnimation = function(name, row, frames){
