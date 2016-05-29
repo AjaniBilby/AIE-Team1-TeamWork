@@ -11,7 +11,7 @@ console.log("Running Display")
   Setup Camera
 ------------------------------------------------------------------------------*/
 var camera = {
-  location: new Vector2()
+  location: new Vector2(0,0)
 }
 
 
