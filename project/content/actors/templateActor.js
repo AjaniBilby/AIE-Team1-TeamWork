@@ -7,6 +7,7 @@ newActorClass.tickEvent = function(dt, id){
 
 newActorClass.EventPlay = function(id){
   //I am controlled by GetActorById(id).controlledActorID
+  //Getting a controller input value  GetControllerById(GetActorById(id).controlledActorID).axis["MoveForward"]
   console.info("Spawned Actor: ", GetActorById(id));
 }
 

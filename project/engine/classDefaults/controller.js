@@ -51,11 +51,8 @@ Controller = function(controllerClass, callback){
 Controller.prototype.Possese = function(actorid){
   this.controlledActor = actorid;
   GetActorById(actorid).controllerId = this.id;
-  if (typeof(actors.list[id].onPossese()) == "funciton"){
-    actors.list[id].onPossese();
-  }
-  if (typeof(actors.classes[actorClass].onPossese) == "function"){
-    actors.classes[actorClass].onPossese(actorid, this.id);
+  if (typeof(actors.classes[GetActorById(actorid).class].onPossese) == "function"){
+    actors.classes[GetActorById(actorid).class].onPossese(actorid, this.id);
   }
 };
 
