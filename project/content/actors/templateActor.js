@@ -11,10 +11,10 @@ newActorClass.EventPlay = function(id){
   console.info("Spawned Actor: ", GetActorById(id));
 }
 
-newActorClass.onPossese = function(myid, controllerid){
+newActorClass.onPossess = function(myid, controllerid){
   //console.log("I've been possesed")
 }
 
-newActorClass.unPossese = function(myid, controllerid){
+newActorClass.unPossess = function(myid, controllerid){
   //console.log("I've been unpossesed")
 }

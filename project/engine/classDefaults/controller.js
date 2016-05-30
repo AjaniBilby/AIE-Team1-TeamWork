@@ -48,11 +48,20 @@ Controller = function(controllerClass, callback){
   }
 };
 
-Controller.prototype.Possese = function(actorid){
+Controller.prototype.Possess = function(actorid){
+  Possess
   this.controlledActor = actorid;
   GetActorById(actorid).controllerId = this.id;
-  if (typeof(actors.classes[GetActorById(actorid).class].onPossese) == "function"){
-    actors.classes[GetActorById(actorid).class].onPossese(actorid, this.id);
+  if (typeof(actors.classes[GetActorById(actorid).class].onPossess) == "function"){
+    actors.classes[GetActorById(actorid).class].onPossess(actorid, this.id);
+  }
+};
+
+Controller.prototype.unPossess = function(actorid){
+  this.controlledActor = actorid;
+  GetActorById(actorid).controllerId = "null";
+  if (typeof(actors.classes[GetActorById(actorid).class].unPossess) == "function"){
+    actors.classes[GetActorById(actorid).class].unPossess(actorid, this.id);
   }
 };
 
