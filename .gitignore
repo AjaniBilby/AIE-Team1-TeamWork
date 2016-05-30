@@ -2,3 +2,6 @@ app.asar
 node_modules/*
 .gitignore
 node_modules/**/*
+MyApp-win32-ia32/*
+MyApp-darwin-x64/*
+MyApp-linux-ia32/*
