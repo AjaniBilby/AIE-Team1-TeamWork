@@ -18,3 +18,8 @@ function CollisionTileToWorld(tile){
   tile.y *= collision.tileSize;
   return tile;
 };
+
+function AddStaticCollision(location){
+  var tileLoc = {};
+  tileLoc.x =
+}
