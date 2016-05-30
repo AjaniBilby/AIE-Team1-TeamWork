@@ -6,5 +6,14 @@ newActorClass.tickEvent = function(dt, id){
 }
 
 newActorClass.EventPlay = function(id){
+  //I am controlled by GetActorById(id).controlledActorID
   console.info("Spawned Actor: ", GetActorById(id));
+}
+
+newActorClass.onPossese = function(myid, controllerid){
+  //console.log("I've been possesed")
+}
+
+newActorClass.unPossese = function(myid, controllerid){
+  //console.log("I've been unpossesed")
 }

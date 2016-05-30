@@ -7,4 +7,7 @@ newControllerClass.tickEvent = function(dt, id){
 
 newControllerClass.EventPlay = function(id){
   console.info("Spawned Actor: ", GetControllerById(id));
+  SpawnActor({location: {x:0,y:0}, rotation: 0, size:{x:164,y:124}}, "templateActor", function(id){
+    GetControllerById(id).Possese(id)
+  })
 }
