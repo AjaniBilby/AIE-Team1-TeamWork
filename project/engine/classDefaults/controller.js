@@ -1,18 +1,43 @@
 LoadJS("engine/inputHandler.js");
 
-var Controllers = {
+var controllers = {
   classes: {},
   list: []
 };
 
+function SpawnController(transform, iclass, callback){
+  //SpawnController({location: {x:0,y:0}, rotation: 0, size:{x:164,y:124}}, "playerController")
+  //Check that transform is valid
+  var temp = new Actor(iclass, function(newControllerId){
+    controllers.list[newControllerId].location = transform.location;
+    controllers.list[newControllerId].rotation = transform.rotation;
+    controllers.list[newControllerId].size = transform.size;
+
+    //Run call back
+    if (typeof(callback) == "function"){
+      callback(newControllerId);
+    }
+  });
+}
+
 Controller = function(controllerClass, callback){
+  if (typeof(actor.classes[controllerClass]) != "object"){
+    if (fs.existsSync("./app.asar/content/controllers/"+controllerClass+".js")){
+      LoadJS("./content/controllers/"+actorClass+".js", true);
+      controllers.classes[controllerClass] = newActorClass;
+    }
+  }
+
   this.axis = {};
   this.actions = {};
   this.controlledActorID = "null";
   this.class = "null"
-  this.id = Controllers.list.length;
+  this.id = controllers.list.length;
   this.movementInput = new Vector2();
-  Controllers.list.push(this);
+  controllers.list.push(this);
+  if (typeof(controllers.classes[controllerClass].EventPlay) == "function"){
+    
+  }
 };
 
 Controller.prototype.Possese = function(actorid){
@@ -96,18 +121,18 @@ Controller.prototype.HasControl = function(){
 }
 
 AddTickEvent(function(){
-  for (c=0; c<Controllers.list.length; c++){
-    if (typeof(Controllers.list[c]) == "object") {
-      Controllers.list[c].UpdateAxis();
-      Controllers.list[c].UpdateActions();
-      if (typeof(Controllers.list[c].class) == "string"){
-        if (typeof(Controllers.classes[Controllers.list[c].class]) != "undefined"){
-          if (typeof(Controllers.classes[Controllers.list[c].class].tickEvent) == "function"){
-            Controllers.classes[Controllers.list[c].class].tickEvent();
+  for (c=0; c<controllers.list.length; c++){
+    if (typeof(controllers.list[c]) == "object") {
+      controllers.list[c].UpdateAxis();
+      controllers.list[c].UpdateActions();
+      if (typeof(controllers.list[c].class) == "string"){
+        if (typeof(controllers.classes[controllers.list[c].class]) != "undefined"){
+          if (typeof(controllers.classes[controllers.list[c].class].tickEvent) == "function"){
+            controllers.classes[controllers.list[c].class].tickEvent();
           }
         }
       }
-      Controllers.list[c].Update();
+      controllers.list[c].Update();
     }
   }
 }, "*");
