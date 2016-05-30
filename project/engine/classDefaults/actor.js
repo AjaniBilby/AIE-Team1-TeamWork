@@ -88,7 +88,7 @@ AddTickEvent(function(dt){
     actors.list[a].animation.update(actors.list[a].location);
     if (typeof(actors.classes[actors.list[a].class]) != "undefined"){
       if (typeof(actors.classes[actors.list[a].class].tickEvent) == "function"){
-        actors.classes[actors.list[a].class].tickEvent(dt);
+        actors.classes[actors.list[a].class].tickEvent(dt, a);
       }
     }
   }
