@@ -61,3 +61,5 @@ LoadJS("engine/classDefaults/Structures.js");
 LoadJS("engine/classDefaults/Functions.js");
 LoadJS("engine/display.js");
 LoadJS("engine/inputHandler.js");
+LoadJS("engine/classDefaults/actor.js");
+LoadJS("engine/classDefaults/controller.js");

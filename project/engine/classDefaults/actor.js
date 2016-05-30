@@ -2,7 +2,7 @@ LoadJS("engine/classDefaults/Functions.js");
 LoadJS("engine/classDefaults/Structures.js");
 LoadJS("engine/render.js");
 LoadJS("engine/animation.js");
-LoadJS("engine/classDefaults/playerController.js");
+LoadJS("engine/classDefaults/controller.js");
 LoadJS("engine/drawSprite.js");
 
 var actors = {

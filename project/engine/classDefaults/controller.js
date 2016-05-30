@@ -8,10 +8,11 @@ var controllers = {
 function SpawnController(transform, iclass, callback){
   //SpawnController({location: {x:0,y:0}, rotation: 0, size:{x:164,y:124}}, "playerController")
   //Check that transform is valid
-  var temp = new Actor(iclass, function(newControllerId){
+  var temp = new Controller(iclass, function(newControllerId){
     controllers.list[newControllerId].location = transform.location;
     controllers.list[newControllerId].rotation = transform.rotation;
     controllers.list[newControllerId].size = transform.size;
+
 
     //Run call back
     if (typeof(callback) == "function"){
@@ -21,12 +22,16 @@ function SpawnController(transform, iclass, callback){
 }
 
 Controller = function(controllerClass, callback){
-  if (typeof(actor.classes[controllerClass]) != "object"){
+  if (typeof(controllers.classes[controllerClass]) != "object"){
     if (fs.existsSync("./app.asar/content/controllers/"+controllerClass+".js")){
-      LoadJS("./content/controllers/"+actorClass+".js", true);
-      controllers.classes[controllerClass] = newActorClass;
+      LoadJS("./content/controllers/"+controllerClass+".js", true);
+      controllers.classes[controllerClass] = newControllerClass;
+    }else{
+      console.error("Invalid Controller Class: " + controllerClass)
+      return;
     }
   }
+
 
   this.axis = {};
   this.actions = {};
@@ -36,7 +41,10 @@ Controller = function(controllerClass, callback){
   this.movementInput = new Vector2();
   controllers.list.push(this);
   if (typeof(controllers.classes[controllerClass].EventPlay) == "function"){
-    
+    controllers.classes[controllerClass].EventPlay(this.id);
+  }
+  if (typeof(callback == "function")){
+    callback(this.id);
   }
 };
 
@@ -120,6 +128,10 @@ Controller.prototype.HasControl = function(){
   return typeof(actors.list[this.controlledActorID]) == "object";
 }
 
+function GetControllerById(id){
+  return controllers.list[id];
+}
+
 AddTickEvent(function(){
   for (c=0; c<controllers.list.length; c++){
     if (typeof(controllers.list[c]) == "object") {
@@ -136,5 +148,3 @@ AddTickEvent(function(){
     }
   }
 }, "*");
-
-test = new Controller()
