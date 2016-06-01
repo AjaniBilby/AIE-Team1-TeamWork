@@ -59,7 +59,7 @@ app.on('activate', function () {
   // dock icon is clicked and there are no other windows open.
   if (mainWindow === null) {
     createWindow()
-  }
+  } // hello
 })
 
 // In this file you can include the rest of your app's specific main process
