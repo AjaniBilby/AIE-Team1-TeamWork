@@ -18,3 +18,4 @@ newActorClass.onPossess = function(myid, controllerid){
 newActorClass.unPossess = function(myid, controllerid){
   //console.log("I've been unpossesed")
 }
+// edit
