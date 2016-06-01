@@ -7,9 +7,9 @@
     "start": "asar pack project app.asar && electron .",
     "compile": "asar pack project app.asar",
     "run": "electron .",
-  	"build-mac": "electron-packager . MyApp --platform=darwin --arch=x64 --version=1.1.1 --ignore=node_modules/electron-* --ignore=project/* --ignore=./*.bat --ignore=./.git* --overwrite",
-  	"build-win": "electron-packager . MyApp --platform=win32 --arch=ia32 --version=1.1.1 --ignore=node_modules/electron-* --ignore=project/* --ignore=./*.bat --ignore=./.git* --overwrite",
-  	"build-linux": "electron-packager . MyApp --platform=linux --arch=ia32 --version=1.1.1 --ignore=node_modules/electron-* --ignore=project/* --ignore=./*.bat --ignore=./.git* --overwrite"
+  	"build-mac": "electron-packager . MyApp --platform=darwin --arch=x64 --version=1.1.1 --ignore=node_modules/electron-* --ignore=project/* --ignore=./*.bat --ignore=./.git*",
+  	"build-win": "electron-packager . MyApp --platform=win32 --arch=ia32 --version=1.1.1 --ignore=node_modules/electron-* --ignore=project/* --ignore=./*.bat --ignore=./.git*",
+  	"build-linux": "electron-packager . MyApp --platform=linux --arch=ia32 --version=1.1.1 --ignore=node_modules/electron-* --ignore=project/* --ignore=./*.bat --ignore=./.git*"
   },
   "author": "Ajani James Bilby",
   "license": "ISC",
