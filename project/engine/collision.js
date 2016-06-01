@@ -21,7 +21,5 @@ function CollisionTileToWorld(tile){
 
 function AddStaticCollision(location){
   var tileLoc = {};
-  tileLoc.x = location.x;
-  tileLoc.y = location.y;
-  //TODO: Complete this
+  tileLoc.x =
 }
