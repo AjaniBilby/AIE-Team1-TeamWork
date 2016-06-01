@@ -1,35 +1,35 @@
 0 info it worked if it ends with ok
 1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
-1 verbose cli   'C:\\Users\\Hobgoblin101\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
 1 verbose cli   'start' ]
-2 info using npm@3.8.7
-3 info using node@v6.0.0
+2 info using npm@3.8.9
+3 info using node@v6.2.0
 4 verbose run-script [ 'prestart', 'start', 'poststart' ]
 5 info lifecycle electronapp@0.0.1~prestart: electronapp@0.0.1
 6 silly lifecycle electronapp@0.0.1~prestart: no script for prestart, continuing
 7 info lifecycle electronapp@0.0.1~start: electronapp@0.0.1
 8 verbose lifecycle electronapp@0.0.1~start: unsafe-perm in lifecycle true
-9 verbose lifecycle electronapp@0.0.1~start: PATH: C:\Users\Hobgoblin101\AppData\Roaming\npm\node_modules\npm\bin\node-gyp-bin;C:\Users\Hobgoblin101\Documents\GitHub\AIE-Team1-TeamWork\node_modules\.bin;C:\Program Files\nodejs;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\Program Files (x86)\Skype\Phone\;C:\Program Files (x86)\Windows Live\Shared;C:\Users\Hobgoblin101\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files\Common Files\Autodesk Shared\;C:\Program Files (x86)\Autodesk\Backburner\;C:\Program Files\TortoiseSVN\bin;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files (x86)\Microsoft Emulator Manager\1.0\;C:\Program Files\nodejs\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Users\Hobgoblin101\AppData\Local\atom\bin;C:\Users\Hobgoblin101\AppData\Roaming\npm
-10 verbose lifecycle electronapp@0.0.1~start: CWD: C:\Users\Hobgoblin101\Documents\GitHub\AIE-Team1-TeamWork
+9 verbose lifecycle electronapp@0.0.1~start: PATH: C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;C:\Users\Sean\Documents\GitHub\AIE-Team1-TeamWork\node_modules\.bin;C:\Program Files\nodejs;C:\Users\Sean\AppData\Roaming\npm;C:\Program Files\nodejs\;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\Program Files (x86)\Skype\Phone\;C:\Program Files (x86)\QuickTime\QTSystem\;C:\Program Files\nodejs\;C:\Users\Sean\AppData\Roaming\npm
+10 verbose lifecycle electronapp@0.0.1~start: CWD: C:\Users\Sean\Documents\GitHub\AIE-Team1-TeamWork
 11 silly lifecycle electronapp@0.0.1~start: Args: [ '/d /s /c', 'asar pack project app.asar && electron .' ]
 12 silly lifecycle electronapp@0.0.1~start: Returned: code: 3221226525  signal: null
 13 info lifecycle electronapp@0.0.1~start: Failed to exec start script
 14 verbose stack Error: electronapp@0.0.1 start: `asar pack project app.asar && electron .`
 14 verbose stack Exit status 3221226525
-14 verbose stack     at EventEmitter.<anonymous> (C:\Users\Hobgoblin101\AppData\Roaming\npm\node_modules\npm\lib\utils\lifecycle.js:244:16)
+14 verbose stack     at EventEmitter.<anonymous> (C:\Program Files\nodejs\node_modules\npm\lib\utils\lifecycle.js:245:16)
 14 verbose stack     at emitTwo (events.js:106:13)
 14 verbose stack     at EventEmitter.emit (events.js:191:7)
-14 verbose stack     at ChildProcess.<anonymous> (C:\Users\Hobgoblin101\AppData\Roaming\npm\node_modules\npm\lib\utils\spawn.js:24:14)
+14 verbose stack     at ChildProcess.<anonymous> (C:\Program Files\nodejs\node_modules\npm\lib\utils\spawn.js:24:14)
 14 verbose stack     at emitTwo (events.js:106:13)
 14 verbose stack     at ChildProcess.emit (events.js:191:7)
 14 verbose stack     at maybeClose (internal/child_process.js:850:16)
 14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:215:5)
 15 verbose pkgid electronapp@0.0.1
-16 verbose cwd C:\Users\Hobgoblin101\Documents\GitHub\AIE-Team1-TeamWork
-17 error Windows_NT 10.0.10586
-18 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Users\\Hobgoblin101\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js" "start"
-19 error node v6.0.0
-20 error npm  v3.8.7
+16 verbose cwd C:\Users\Sean\Documents\GitHub\AIE-Team1-TeamWork
+17 error Windows_NT 6.1.7601
+18 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "start"
+19 error node v6.2.0
+20 error npm  v3.8.9
 21 error code ELIFECYCLE
 22 error electronapp@0.0.1 start: `asar pack project app.asar && electron .`
 22 error Exit status 3221226525
