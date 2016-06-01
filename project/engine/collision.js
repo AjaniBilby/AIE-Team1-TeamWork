@@ -21,5 +21,23 @@ function CollisionTileToWorld(tile){
 
 function AddStaticCollision(location){
   var tileLoc = {};
-  tileLoc.x =
+  tileLoc.x = location.x;
+  tileLoc.y = location.y;
+  if (typeof(collision.static) != "object"){
+    collision.static = [];
+  }
+  if (typeof(collision.static[x]) != "object"){
+    collision.static = [];
+  }
+  collision.static[x][y] = true;
+}
+
+function TestCollision(point){
+  if (typeof(collision.static) != "object"){
+    return false
+  }
+  if (typeof(collision.static[point.x]) != "object"){
+    return false;
+  }
+  return collision.static[point.x][point.y];
 }
