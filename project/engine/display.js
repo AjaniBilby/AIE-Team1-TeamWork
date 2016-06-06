@@ -87,6 +87,10 @@ function run(){
   dt = (now - lastTick) / 1000.0; // Convert to ms
   lastTick = now;
 
+  if (timeDilation > 0){
+    dt /= timeDilation;
+  }
+
   //Fill Background
   context.fillStyle = "rgba(0, 100, 255, 1)";
   context.fillRect(0, 0, canvas.width, canvas.height);
