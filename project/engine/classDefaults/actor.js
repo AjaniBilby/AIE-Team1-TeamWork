@@ -86,8 +86,8 @@ function GetActorById(id){
 
 AddTickEvent(function(dt){
   for (a=0; a<actors.list.length; a++){
-    actors.list[a].physics.update();
-    actors.list[a].update();
+    actors.list[a].physics.update(a, dt);
+    actors.list[a].update(dt);
     actors.list[a].animation.update(actors.list[a].location);
     if (typeof(actors.classes[actors.list[a].class]) != "undefined"){
       if (typeof(actors.classes[actors.list[a].class].tickEvent) == "function"){

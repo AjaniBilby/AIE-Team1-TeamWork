@@ -1,13 +1,13 @@
 LoadJS("./engine/classDefaults/actor.js")
 var Physics = function(){
-  this.drag = 0;
+  this.drag = 1;
   this.bounce = 0;
   this.collision = true;
 }
 
-Physics.prototype.update = function(id){
-  this.location = GetActorById(id).location;
-  this.velocity = GetActorById(id).velocity;
+Physics.prototype.update = function(id, dt){
+  GetActorById(id).velocity.x /= this.drag * dt;
+  GetActorById(id).velocity.y /= this.drag * dt;
 
   if (this.collision){
     //test center
@@ -17,18 +17,30 @@ Physics.prototype.update = function(id){
     //test right
     if (TestCollision(GetActorById(id).location+(GetActorById(id).size.x+1))){
       console.log("Collision to the right");
+      if (GetActorById(id).velocity.x > 0){
+        GetActorById(id).velocity.x = (0-GetActorById(id).velocity.x)*this.bounce;
+      }
     }
     //test left
     if (TestCollision(GetActorById(id).location-(GetActorById(id).size.x+1))){
       console.log("Collision to the left");
+      if (GetActorById(id).velocity.x < 0){
+        GetActorById(id).velocity.x = (0-GetActorById(id).velocity.x)*this.bounce;
+      }
     }
     //test up
     if (TestCollision(GetActorById(id).location-(GetActorById(id).size.x+1))){
       console.log("Collision to the up");
+      if (GetActorById(id).velocity.y < 0){
+        GetActorById(id).velocity.y = (0-GetActorById(id).velocity.y)*this.bounce;
+      }
     }
     //test down
     if (TestCollision(GetActorById(id).location-(GetActorById(id).size.x+1))){
       console.log("Collision to the down");
+      if (GetActorById(id).velocity.y > 0){
+        GetActorById(id).velocity.y = (0-GetActorById(id).velocity.y)*this.bounce;
+      }
     }
   }
 }
