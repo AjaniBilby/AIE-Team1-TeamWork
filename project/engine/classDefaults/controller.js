@@ -34,6 +34,7 @@ Controller = function(controllerClass, callback){
 
 
   this.axis = {};
+  this.takeInputs = true;
   this.actions = {};
   this.controlledActorID = "null";
   this.class = "null"
@@ -68,8 +69,6 @@ Controller.prototype.unPossess = function(actorid){
 Controller.prototype.Update = function(){
   if (this.HasControl()){
     this.movementInput.Normalize();
-    this.GetPawn().velocity.x = parsefloat(this.movementInput.x);
-    this.GetPawn().velocity.y = parsefloat(this.movementInput.y)
   }
 };
 
@@ -145,8 +144,10 @@ function GetControllerById(id){
 AddTickEvent(function(){
   for (c=0; c<controllers.list.length; c++){
     if (typeof(controllers.list[c]) == "object") {
-      controllers.list[c].UpdateAxis();
-      controllers.list[c].UpdateActions();
+      if (controllers.list[c].takeInputs == true){
+        controllers.list[c].UpdateAxis();
+        controllers.list[c].UpdateActions();
+      }
       if (typeof(controllers.list[c].class) == "string"){
         if (typeof(controllers.classes[controllers.list[c].class]) != "undefined"){
           if (typeof(controllers.classes[controllers.list[c].class].tickEvent) == "function"){
