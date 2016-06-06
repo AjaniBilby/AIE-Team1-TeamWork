@@ -2,6 +2,7 @@ LoadJS("engine/classDefaults/Functions.js");
 LoadJS("engine/classDefaults/Structures.js");
 LoadJS("engine/render.js");
 LoadJS("engine/animation.js");
+LoadJS("engine/physics.js");
 LoadJS("engine/classDefaults/controller.js");
 LoadJS("engine/drawSprite.js");
 
@@ -48,6 +49,7 @@ Actor = function(actorClass, callback){
   this.id = actors.list.length;
   this.controllerId = null;
   this.class = actorClass;
+  this.physics = new Physics();
   actors.list.push(this);
   if (typeof(actors.classes[actorClass].EventPlay) == "function"){
     actors.classes[actorClass].EventPlay(this.id);
@@ -84,6 +86,7 @@ function GetActorById(id){
 
 AddTickEvent(function(dt){
   for (a=0; a<actors.list.length; a++){
+    actors.list[a].physics.update();
     actors.list[a].update();
     actors.list[a].animation.update(actors.list[a].location);
     if (typeof(actors.classes[actors.list[a].class]) != "undefined"){
