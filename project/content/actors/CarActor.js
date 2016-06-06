@@ -3,6 +3,7 @@ var newActorClass = {};
 
 newActorClass.tickEvent = function(dt, id){
   //console.log("playerActor Got a tick :D");
+  console.log(GetControllerById(GetActorById(id).controllerId).axis["MoveForward"])
 }
 
 newActorClass.EventPlay = function(id){

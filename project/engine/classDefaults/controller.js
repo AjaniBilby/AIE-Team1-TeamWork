@@ -50,7 +50,6 @@ Controller = function(controllerClass, callback){
 };
 
 Controller.prototype.Possess = function(actorid){
-  Possess
   this.controlledActor = actorid;
   GetActorById(actorid).controllerId = this.id;
   if (typeof(actors.classes[GetActorById(actorid).class].onPossess) == "function"){
