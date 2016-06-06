@@ -87,7 +87,7 @@ function run(){
   dt = (now - lastTick) / 1000.0; // Convert to ms
   lastTick = now;
 
-  if (timeDilation > 0){
+  if (timeDilation > 0 && timeDilation != 1){
     dt /= timeDilation;
   }
 
