@@ -6,6 +6,6 @@ newActorClass.tickEvent = function(id){
 
 newActorClass.EventPlay = function(id){
   GetActorById(id).animation.image.src = "./content/sprites/TestAnim.png";
-  GetActorById(id).animation.buildAnimation("idle", 0, 2, true);
+  GetActorById(id).animation.buildAnimation("idle", 0, 2, true, 0.5);
   GetActorById(id).animation.play("idle")
 }

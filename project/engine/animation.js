@@ -5,16 +5,24 @@ var Animation = function(src, size){
   this.image.src = src;
 
   this.frameTime = 0;
-  this.frameDuration = 1;
   this.currentFrame = 0;
   this.animations = {};
+  this.playing = null;
   this.sectionSize = new Vector2(size.x, size.y);
 };
 
-Animation.prototype.buildAnimation = function(name, row, frames, loop){
+Animation.prototype.buildAnimation = function(name, row, frames, loop, frameDuration){
+  if (typeof(loop) == "undefined"){
+    loop = false;
+  }
+  if (typeof(frameDuration) != "number"){
+    frameDuration = 1;
+  }
   this.animations[name] = {};
   this.animations[name].row = row;
   this.animations[name].frames = frames;
+  this.animations[name].loop = loop;
+  this.animations[name].frameDuration = frameDuration;
 };
 
 Animation.prototype.play = function(animation, reset){
@@ -54,29 +62,26 @@ Animation.prototype.update = function(location){
   }
 
   this.frameTime += dt;
-  console.log(this.frameTime)
-
-  //Update current drawing frame
-  if (this.frameTime >= this.frameDuration){
-    this.frameTime = 0;
-    this.currentFrame += 1;
-    console.log("NEW FRAME: " + this.currentFrame)
-  }
-  //Detect if it has finished the animation
-  if (this.currentFrame >= this.animations[this.playing].frames){
-    if (typeof(this.onEndAnimation) == "function"){
-      this.onEndAnimation();
-    }
-    if (this.animations[this.playing].loop == true){
-      this.currentFrame = 0;
-    }else{
-      this.playing = null;
-    }
-  }
 
   if (typeof(this.animations[this.playing]) == "object"){
-    //Draw animation
+    //Update current drawing frame
+    if (this.frameTime >= this.animations[this.playing].frameDuration){
+      this.frameTime = 0;
+      this.currentFrame += 1;
+    }
+    //Detect if it has finished the animation
+    if (this.currentFrame >= this.animations[this.playing].frames){
+      if (typeof(this.onEndAnimation) == "function"){
+        this.onEndAnimation();
+      }
+      if (this.animations[this.playing].loop == true){
+        this.currentFrame = 0;
+      }else{
+        this.playing = null;
+      }
+    }
 
+    //Draw animation
     render.AddRender(0, {
       image: this.image,
       location: {x: location.x, y: location.y},
@@ -90,6 +95,6 @@ Animation.prototype.update = function(location){
       }
     });
   }else{
-    console.error("Animation: Invalid animation to play (" +this.animations[this.playing]+ ")");
+    console.error("Animation: Invalid animation to play (", this.animations[this.playing], ")");
   }
 };
