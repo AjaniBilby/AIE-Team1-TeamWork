@@ -1,5 +1,7 @@
 LoadJS("engine/classDefaults/Functions.js");
 
+function isOdd(num) { return num % 2;}
+
 /*----------------------------------------------------------
   Vector 2 class
 ----------------------------------------------------------*/
@@ -107,3 +109,5 @@ function CallEvent(actor, eventname){
   var event = new Event(eventname);
   actor.dispatchEvent(event);
 }
+
+LoadJS("engine/Structures/2D-array.js");
