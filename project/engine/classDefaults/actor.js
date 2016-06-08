@@ -11,6 +11,8 @@ var actors = {
   list: []
 };
 
+var self = GetActorById(0);
+
 function SpawnActor(transform, iclass, callback){
   //SpawnActor({location: {x:0,y:0}, rotation: 0, size:{x:164,y:124}}, "playerActor")
   //Check that transform is valid
@@ -52,6 +54,7 @@ Actor = function(actorClass, callback){
   this.physics = new Physics();
   actors.list.push(this);
   if (typeof(actors.classes[actorClass].EventPlay) == "function"){
+    self = GetActorById(this.id);
     actors.classes[actorClass].EventPlay(this.id);
   }
   if (typeof(callback) == "function"){
@@ -95,6 +98,7 @@ function GetActorsOfClass(classname){
 AddTickEvent(function(dt){
   for (var a=0; a<actors.list.length; a++){
     if (typeof(actors.list[a]) == "object"){
+      self = GetActorById(a);
       if (typeof(actors.classes[actors.list[a].class]) != "undefined"){
         if (typeof(actors.classes[actors.list[a].class].tickEvent) == "function"){
           actors.classes[actors.list[a].class].tickEvent(dt, a);
