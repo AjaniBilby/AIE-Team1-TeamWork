@@ -15,6 +15,9 @@ newActorClass.tickEvent = function(dt, id){
 }
 
 newActorClass.EventPlay = function(id){
+  self.physics.drag = 10;
+  self.physics.acceleration = 10;
+  self.physics.maxVelocity = 10;
   //I am controlled by GetActorById(id).controlledActorID
   //Getting a controller input value  GetControllerById(GetActorById(id).controlledActorID).axis["MoveForward"]
   self.animation.image.src = "./content/sprites/TestAnim.png";
