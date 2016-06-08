@@ -62,9 +62,9 @@ Actor = function(actorClass, callback){
   }
 }
 
-Actor.prototype.update = function(){
-  this.location.x += this.velocity.x;
-  this.location.y += this.velocity.y;
+Actor.prototype.update = function(dt){
+  this.location.x += this.velocity.x*dt;
+  this.location.y += this.velocity.y*dt;
 }
 
 Actor.prototype.GetController = function(id){
@@ -104,7 +104,7 @@ AddTickEvent(function(dt){
           actors.classes[actors.list[a].class].tickEvent(dt, a);
         }
       }
-      actors.list[a].physics.update(a, dt);
+      actors.list[a].physics.update(dt, a);
       actors.list[a].update(dt);
       actors.list[a].animation.update(actors.list[a].location);
     }

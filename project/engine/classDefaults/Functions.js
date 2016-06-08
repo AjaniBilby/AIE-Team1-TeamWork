@@ -14,3 +14,12 @@ function overlappingBox(location, startpoint, endpoint){
 				return false;
 			}
 };
+
+function Clamp(value, min, max){
+	if (value < min){
+		value = min
+	}else if (value > max){
+		value = max
+	}
+	return value
+}

@@ -51,7 +51,7 @@ Vector2.prototype.Multiply = function (scalar){
 /*---------------------------------------------------
   Function relevent to vector2
 ---------------------------------------------------*/
-RotateVector(end, angle, center){
+function RotateVector(end, angle, center){
   if (typeof(center) != "object"){
     center = {};
   }
@@ -66,10 +66,10 @@ RotateVector(end, angle, center){
 	var sin = Math.sin(radians);
 	var nx = (cos * (end.x - center.x)) + (sin * (end.y + center.y)) + center.x;
 	var ny = (cos * (end.y - center.y)) + (sin * (end.x + center.x)) + center.x;
-	return {x:nx, y:ny};
+	return {x: nx, y: ny};
 };
 
-DistanceTo(start, end){
+function DistanceTo(start, end){
   var NewEnd = [
 		(end.x - start.x),
 		(end.y - start.y)
@@ -77,6 +77,6 @@ DistanceTo(start, end){
   return Math.sqrt( (NewEnd[0] * NewEnd[0]) + (NewEnd[1] * NewEnd[1]) )
 };
 
-LookAtRotation(start, target){
+function LookAtRotation(start, target){
   return (Math.atan((target.x-start.x), (target.y-start.y)) * 180 / Math.PI);
 }

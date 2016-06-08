@@ -1,13 +1,18 @@
 LoadJS("./engine/classDefaults/actor.js")
 var Physics = function(){
-  this.drag = 1;
+  this.drag = 0.99;
+  this.acceleration = 8;
+  this.maxVelocity = 10;
   this.bounce = 0;
   this.collision = true;
 }
 
-Physics.prototype.update = function(id, dt){
-  GetActorById(id).velocity.x /= this.drag * dt;
-  GetActorById(id).velocity.y /= this.drag * dt;
+Physics.prototype.update = function(dt, id){
+  var self = GetActorById(id);
+  self.velocity.x *= ((this.drag));
+  self.velocity.y *= ((this.drag));
+  self.velocity.x = Clamp(self.velocity.x, -this.maxVelocity, this.maxVelocity);
+  self.velocity.y = Clamp(self.velocity.y, -this.maxVelocity, this.maxVelocity);
 
   if (this.collision){
     //test center

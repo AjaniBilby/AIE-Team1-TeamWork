@@ -6,10 +6,10 @@ newActorClass.tickEvent = function(dt, id){
   //console.log(GetControllerById(GetActorById(id).controllerId).axis["MoveForward"])
   //console.log(GetControllerById(GetActorById(id).controllerId).axis["MoveRight"])
 
-  console.log("forward:", GetControllerById(GetActorById(id).controllerId).axis["MoveForward"], " | side:",GetControllerById(GetActorById(id).controllerId).axis["MoveRight"] )
+  //console.log("forward:", GetControllerById(self.controllerId).axis["MoveForward"], " | side:",GetControllerById(self.controllerId).axis["MoveRight"] )
 
 
-self.velocity.y += "MoveForward";
+  self.velocity.y += parseFloat(-GetControllerById(self.controllerId).axis["MoveForward"]) * self.physics.acceleration;
 
 
 }
@@ -17,9 +17,9 @@ self.velocity.y += "MoveForward";
 newActorClass.EventPlay = function(id){
   //I am controlled by GetActorById(id).controlledActorID
   //Getting a controller input value  GetControllerById(GetActorById(id).controlledActorID).axis["MoveForward"]
-  self.animation.image.src = "./content/sprites/car.png";
-  GetActorById(id).animation.buildAnimation("idle", 0, 1, true, 0.5);
-  GetActorById(id).animation.play("idle")
+  self.animation.image.src = "./content/sprites/TestAnim.png";
+  self.animation.buildAnimation("idle", 0, 2, true, 0.5);
+  self.animation.play("idle")
   console.info("Spawned Actor: ", GetActorById(id));
 }
 

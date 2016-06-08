@@ -1,6 +1,6 @@
 var newActorClass = {};
 
-newActorClass.tickEvent = function(id){
+newActorClass.tickEvent = function(dt, id){
   //console.log("playerActor Got a tick :D");
   self.location.x += 10*dt
 }
