@@ -30,12 +30,20 @@ Array2D.prototype.get = function (x, y){
     if (typeof(this.list[x*2]) != "object"){
       return undefined;
     }
-    return this.list[x*2][y*2];
+    if (y > 0){
+      return this.list[Math.abs(x)*2][Math.abs(y)*2];
+    }else{
+       return this.list[Math.abs(x)*2][Math.abs(y)*2-1];
+    }
   }else{
     if (typeof(this.list[Math.abs(x)*2-1]) != "object"){
       return undefined;
     }
-    return this.list[Math.abs(x)*2-1][Math.abs(y)*2-1];
+    if (y > 0){
+      return this.list[Math.abs(x)*2-1][Math.abs(y)*2];
+    }else{
+       return this.list[Math.abs(x)*2-1][Math.abs(y)*2-1];
+    }
   }
 };
 

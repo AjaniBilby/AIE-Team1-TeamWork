@@ -1,6 +1,6 @@
 var collision = {
   tileSize: 10,
-  staticTiles: []
+  staticTiles: new Array2D()
 };
 
 
@@ -11,17 +11,13 @@ var collision = {
 ------------------------------------------------------------------------------*/
 function AddStaticCollision(location){
   var tileLoc = {
-    x: parseInt(location.x/collision.tileSize),
-    y: parseInt(location.y/collision.tileSize)
+    x: Math.round(location.x/collision.tileSize),
+    y: Math.round(location.y/collision.tileSize)
   };
-  if (typeof(collision.staticTiles[tileLoc.x]) != "object"){
-    collision.staticTiles[tileLoc.x] = [];
+  if (typeof(collision.staticTiles.get(tileLoc.x, tileLoc.y)) != "number"){
+    collision.staticTiles.set(tileLoc.x, tileLoc.y, 0)
   }
-  if (typeof(collision.staticTiles[tileLoc.x][tileLoc.y]) == "number"){
-    collision.staticTiles[tileLoc.x][tileLoc.y] += 1;
-  }else{
-    collision.staticTiles[tileLoc.x][tileLoc.y] = 1;
-  }
+  collision.staticTiles.set(tileLoc.x, tileLoc.y, (collision.staticTiles.get(tileLoc.x, tileLoc.y)+1))
   return true
 }
 
@@ -37,23 +33,19 @@ function TestCollisionPoint(location){
     }
   }
   var tileLoc = {
-    x: parseInt(location.x/collision.tileSize),
-    y: parseInt(location.y/collision.tileSize)
+    x: Math.round(location.x/collision.tileSize),
+    y: Math.round(location.y/collision.tileSize)
   };
-  if (typeof(collision.staticTiles) == "object") {
-    if (typeof(collision.staticTiles[tileLoc.x]) == "object") {
-      if (collision.staticTiles[tileLoc.x][tileLoc.y] >= 1){
-        return true;
-      }
-    }
+  if (collision.staticTiles.get(tileLoc.x, tileLoc.y) >= 1){
+    return true;
   }
-  //else
+  //defualt return
   return false;
 }
 
 function TestCollision(location, size){
   if (typeof(size) == "undefined"){
-    return TestCollisionPoint();
+    return TestCollisionPoint(location);
   }
 
   var tileCover = {
