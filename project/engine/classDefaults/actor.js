@@ -64,10 +64,6 @@ Actor.prototype.update = function(){
   this.location.y += this.velocity.y;
 }
 
-Actor.prototype.draw = function(){
-  //this.sprite.draw(context, WorldToScreen(this.location).x, WorldToScreen(this.location).y);
-}
-
 Actor.prototype.GetController = function(id){
   if (typeof(id) != "number"){
     id = this.controllerId;
@@ -84,8 +80,20 @@ function GetActorById(id){
   return actors.list[id];
 }
 
+function GetActorsOfClass(classname){
+  var results = [];
+  for (var a=0; a<actors.list.length; a++){
+    if (typeof(actors.list[a]) == "object"){
+      if (actors.list[a].class == classname){
+        results.push(a);
+      }
+    }
+  }
+  return results;
+};
+
 AddTickEvent(function(dt){
-  for (a=0; a<actors.list.length; a++){
+  for (var a=0; a<actors.list.length; a++){
     if (typeof(actors.list[a]) == "object"){
       if (typeof(actors.classes[actors.list[a].class]) != "undefined"){
         if (typeof(actors.classes[actors.list[a].class].tickEvent) == "function"){

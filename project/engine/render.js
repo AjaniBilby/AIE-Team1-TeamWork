@@ -23,20 +23,27 @@ render.DrawSection = function(image, location, selection){
 
   //Draw image
   if (typeof(selection) != "object"){
-    context.drawImage(image, tempLocation.x-image.width/2, tempLocation.y-image.height/2);
-  }else{
-    if (typeof(selection.start) != "object"){
-      selection.start.x = 0;
-      selection.start.y = 0;
-    }
-    if (typeof(selection.width) != "number"){
-      selection.width = image.width
-    }
-    if (typeof(selection.height) != "number"){
-      selection.height = image.height
-    }
-    context.drawImage(image, selection.start.x, selection.start.y, selection.width, selection.height, tempLocation.x-selection.width/2, tempLocation.y-selection.height/2, selection.width, selection.height);
+    selection = {};
   }
+  if (typeof(selection.start) != "object"){
+    selection.start.x = 0;
+    selection.start.y = 0;
+  }
+  if (typeof(selection.width) != "number"){
+    selection.width = image.width
+  }
+  if (typeof(selection.height) != "number"){
+    selection.height = image.height
+  }
+
+  tempLocation.x -= selection.width/2;
+  tempLocation.y -= selection.height/2;
+
+  if (tempLocation.x+selection.width<0 || tempLocation.x>canvas.width || tempLocation.y+selection.height<0 || tempLocation.y>canvas.height){
+    return;
+  }
+
+  context.drawImage(image, selection.start.x, selection.start.y, selection.width, selection.height, tempLocation.x, tempLocation.y, selection.width, selection.height);
 };
 
 render.AddRender = function(zorder, imageData){
