@@ -18,7 +18,7 @@ newControllerClass.EventPlay = function(id){
 class PlayerController extends Controller{
   constructor(){
     super("controller");
-    var pawn = new TemplateActor;
+    var pawn = new CarActor;
     this.Possess(pawn.id);
   }
 
