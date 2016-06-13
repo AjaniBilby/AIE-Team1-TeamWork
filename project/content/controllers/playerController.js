@@ -1,3 +1,5 @@
+/*
+OLD Code
 var newControllerClass = {};
 //SpawnController({location: {x:0,y:0}, rotation: 0, size:{x:164,y:124}}, "playerController")
 
@@ -11,3 +13,16 @@ newControllerClass.EventPlay = function(id){
     GetControllerById(id).Possess(newId)
   })
 };
+*/
+
+class PlayerController extends Controller{
+  constructor(){
+    super("controller");
+    var pawn = new TemplateActor;
+    this.Possess(pawn.id);
+  }
+
+  get tickEvent(){
+    //TODO the controller got a tick
+  }
+}

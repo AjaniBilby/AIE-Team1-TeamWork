@@ -5,12 +5,15 @@
     <link rel="icon" type="image/png" href="./content/gameIcon.png" />
     <script>
       fs = require("fs");
+      jQuery = require("jquery")
     </script>
     <script>
       var game = {};
       var timeDilation = 1;
       game.state = "game";
-      game.tickEvents = [];
+      var settings = {
+        controlles: "null"
+      }
       /*
       process.versions.node
       process.versions.chrome

@@ -1,18 +1,9 @@
-LoadJS("engine/classDefaults/Structures.js");
-LoadJS("engine/classDefaults/Functions.js");
-LoadJS("engine/collision.js");
-LoadJS("engine/render.js");
-LoadJS("engine/drawSprite.js");
-LoadJS("engine/classDefaults/actor.js");
-LoadJS("engine/classDefaults/controller.js");
-
-console.log("Running Display")
-
 /*------------------------------------------------------------------------------
   Setup Camera
 ------------------------------------------------------------------------------*/
 var camera = {
-  location: new Vector2(0,0)
+  location: new Vector2(0,0),
+  layer: 0
 }
 
 
@@ -70,17 +61,6 @@ var dt = 0.0;
 var lastTick = Date.now();
 var MAXFRAMECOUNT = 60;
 
-
-function AddTickEvent(ifunction, state){
-  if (typeof(state) == "undefined"){
-    state = "game";
-  }
-  if (typeof(game.tickEvents[state]) != "object"){
-    game.tickEvents[state] = [];
-  }
-  game.tickEvents[state].push(ifunction);
-};
-
 function run(){
   //Handel Delta
   var now = Date.now();
@@ -95,7 +75,7 @@ function run(){
   context.fillStyle = "rgba(0, 100, 255, 1)";
   context.fillRect(0, 0, canvas.width, canvas.height);
 
-  if (FileSystem.currentlyLoading > 0){
+  if (fileSystem.currentlyLoading > 0){
     //Draw Loading
     context.fillStyle = "rgb(209, 209, 209)"
     context.font = "38px Arial";
@@ -104,31 +84,14 @@ function run(){
 
     //To stop the game from running while loading
     return;
-  };
-
-  //Run global tick Events
-  if (typeof(game.tickEvents["*"]) == "object"){
-    for (i=0; i<game.tickEvents["*"].length; i++){
-      if (typeof(game.tickEvents["*"][i]) == "function"){
-        game.tickEvents["*"][i](dt);
-      }
-    }
   }
 
-  if (typeof(game.tickEvents[game.state]) == "object"){
-    //Run tick Events
-    for (i=0; i<game.tickEvents[game.state].length; i++){
-      if (typeof(game.tickEvents[game.state][i]) == "function"){
-        game.tickEvents[game.state][i](dt);
-      }
+  if (typeof(objects) == "object"){
+    if (typeof(objects.UpdateAll) == "function"){
+      objects.UpdateAll()
     }
   }
-
-  if (typeof(render) == "object"){
-    if (typeof(render.Draw) == "function"){
-      render.Draw();
-    }
-  }
+  render.Draw();
 };
 
 //-------------------- Don't modify anything below here

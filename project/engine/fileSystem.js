@@ -1,13 +1,10 @@
-var FileSystem = {
+var fileSystem = {
+  root: './app.asar/',
   currentlyLoading: [],
-  Loaded: [],
-  LoadFinnishFunctions: []
+  Loaded: []
 };
-var settings = {
-  controlles: "null"
-}
 
-function LoadJS(script, force){
+function LoadJS(script, force, log){
   var original = script;
   script = './app.asar/'+script;
 
@@ -20,13 +17,13 @@ function LoadJS(script, force){
   //If you are forcing a file to load, then don't bother checking if it exists
   if (force != true){
     //Check if scripts is in list. -1 means it is not in list
-    if (FileSystem.Loaded.indexOf(script) != -1 || FileSystem.currentlyLoading.indexOf(script) != -1){
+    if (fileSystem.Loaded.indexOf(script) != -1 || fileSystem.currentlyLoading.indexOf(script) != -1){
       return false
     }
   }
 
   //Setup new script for loading
-  FileSystem.currentlyLoading.push(script);
+  fileSystem.currentlyLoading.push(script);
   var NewScript = document.createElement('script');
   NewScript.type = 'text/javascript';
   NewScript.id = original;
@@ -36,30 +33,21 @@ function LoadJS(script, force){
   NewScript.innerHTML = obj;
 
   //Remove file from loading list
-  FileSystem.currentlyLoading.splice(FileSystem.currentlyLoading.indexOf(script), 1);
+  fileSystem.currentlyLoading.splice(fileSystem.currentlyLoading.indexOf(script), 1);
 
   //Add File to loaded list
-  FileSystem.Loaded.push(script);
+  fileSystem.Loaded.push(script);
 
   //Place in HTML document so it runs, then remove it
   document.getElementsByTagName('head')[0].appendChild(NewScript);
   document.head.removeChild(document.getElementById(original));
 
-  console.log("Finnished Loading ("+original+")");
+  if (log){
+    console.log("Finnished Loading ("+original+")");
+  }
 
   //Return if it is new
   return true;
 };
 
-function ControlSetup(){
-  obj = JSON.parse(fs.readFileSync("./settings/defaultInputs.json", 'utf8'));
-  settings.controls = obj;
-}
-ControlSetup();
-
-LoadJS("engine/classDefaults/Structures.js");
-LoadJS("engine/classDefaults/Functions.js");
-LoadJS("engine/display.js");
-LoadJS("engine/inputHandler.js");
-LoadJS("engine/classDefaults/actor.js");
-LoadJS("engine/classDefaults/controller.js");
+LoadJS("engine/startup.js")
