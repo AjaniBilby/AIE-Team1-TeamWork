@@ -24,6 +24,9 @@ Vector2.prototype.Magnitude = function (){
 };
 
 Vector2.prototype.Normalize = function (){ //destructive
+  if (this.x == 0 && this.y){
+    return;
+  }
   var mag = this.Magnitude();
   this.x /= mag;
   this.y /= mag;

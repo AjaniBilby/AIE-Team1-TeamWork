@@ -29,8 +29,8 @@ class TemplateActor extends Actor{
     //TODO Add code for each frame/tick below
     if (isNaN(this.controllerID) == false){
       var movementInput = new Vector2(this.controller.axis["MoveForward"], this.controller.axis["MoveRight"]);
-      movementInput.Normalize();
       console.log(movementInput)
+      movementInput.Normalize();
       this.velocity.x += movementInput.x*this.movementSpeed;
       this.velocity.y += movementInput.y*this.movementSpeed;
     }

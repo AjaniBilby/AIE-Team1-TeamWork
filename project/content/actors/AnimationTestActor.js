@@ -18,6 +18,7 @@ class AnimationTestActor extends Actor{
 
     this.animation.image.src = "./content/sprites/TestAnim.png";
     this.buildAnimation("idle", 0, 2, true, 0.5);
+    this.playAnimation("idle")
     this.controllerID = 42;
   }
 
@@ -30,6 +31,6 @@ class AnimationTestActor extends Actor{
   }
 
   get unPossess(){
-    
+
   }
 }

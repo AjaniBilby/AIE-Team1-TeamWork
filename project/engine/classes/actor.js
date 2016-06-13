@@ -133,28 +133,28 @@ Actor.prototype.buildAnimation = function(name, row, frames, loop, frameDuration
   if (typeof(frameDuration) != "number"){
     frameDuration = 1;
   }
-  this.animations[name] = {};
-  this.animations[name].row = row;
-  this.animations[name].frames = frames;
-  this.animations[name].loop = loop;
-  this.animations[name].frameDuration = frameDuration;
+  this.animation.animations[name] = {};
+  this.animation.animations[name].row = row;
+  this.animation.animations[name].frames = frames;
+  this.animation.animations[name].loop = loop;
+  this.animation.animations[name].frameDuration = frameDuration;
 }
 
 Actor.prototype.playAnimation = function(animation, reset){
   if (typeof(reset) == "undefined"){
     reset = true;
   }
-  if (reset && this.playing == animation){
+  if (reset && this.animation.playing == animation){
     //Stop if it is already running the animation and it should not be reset
     return;
   }
 
-  this.currentFrame = 0;
-  this.frameTime = 0;
-  if (typeof(this.animations[animation]) == "object"){
-    this.playing = animation;
+  this.animation.currentFrame = 0;
+  this.animation.frameTime = 0;
+  if (typeof(this.animation.animations[animation]) == "object"){
+    this.animation.playing = animation;
   }else{
-    console.error("Animation: cannot find ("+animation+") in ("+this.src+")")
+    console.error("Animation: cannot find ("+animation+") in ("+this.animation.image.src+")")
   }
 };
 
