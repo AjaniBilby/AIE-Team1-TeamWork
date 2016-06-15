@@ -1,7 +1,7 @@
 {
   "axises": [
     {"name": "MoveRight", "inputs": [{"key": "KEY_A", "value": -1}, {"key": "KEY_D", "value": 1}, {"key": "GAMEPAD_LEFTSTICKX", "value": 1}]},
-    {"name": "MoveForward", "inputs": [{"key": "KEY_W", "value": 1}, {"key": "KEY_S", "value": -1}, {"key": "GAMEPAD_LEFTSTICKY", "value": 1}]}
+    {"name": "MoveForward", "inputs": [{"key": "KEY_W", "value": -1}, {"key": "KEY_S", "value": 1}, {"key": "GAMEPAD_LEFTSTICKY", "value": 1}]}
   ],
   "actions": [
     {"name": "Inventory", "inputs": ["KEY_I"]}

@@ -13,7 +13,7 @@ class CarActor extends Actor{
   get tickEvent(){
     //TODO Add code for each frame/tick below
     if (isNaN(this.controllerID) == false){
-      var movementInput = new Vector2(this.controller.axis["MoveForward"], this.controller.axis["MoveRight"]);
+      var movementInput = new Vector2(control.getAxis("MoveRight"), control.getAxis("MoveForward"));
       movementInput.Normalize();
       console.log(movementInput)
       this.velocity.x += movementInput.x*this.movementSpeed;

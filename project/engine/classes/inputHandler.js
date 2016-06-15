@@ -96,7 +96,6 @@ InputManager.prototype.getAxis = function(name){
   if (typeof(this.axises[name]) != "undefined"){
     value = this.axises[name];
   }
-  console.log(name, value)
   if (isNaN(value)){
     value = 0;
   }
