@@ -1,18 +1,31 @@
-var newActorClass = {};
-//SpawnActor({location: {x:0,y:0}, rotation: 0, size:{x:164,y:124}}, "playerActor")
+var tileEndPoint = 0;
 
-newActorClass.EndTrigger = function(dt, id){
-	//end
-}
+class FloorTileActor extends Actor{
+  constructor(){
+    console.log("Spawned FloorTileActor")
+    super()
+    this.size.x = 2000;
+    this.size.y = 2000;
+    //TODO Add code for eventPlay/onSpawn below
 
-newActorClass.SpawnActor = function(dt, id){
-	//spawns newActorClass
-}
+    var numRocks = Rand(50, 100);
+    for (var i=0; i<numRocks; i++){
+      var newRock = new RockActor;
+      newRock.location.x = Rand(-this.size.x/2, this.size.x/2);
+      newRock.location.y = Rand(-this.size.y/2, this.size.y/2)-tileEndPoint;
+      AddStaticCollision(newRock.location, newRock.size);
+    }
+  }
 
-newActorClass.tickEvent = function(dt, id){
-  //console.log("playerActor Got a tick :D");
-}
-
-newActorClass.EventPlay = function(id){
-  console.info("Spawned Actor: ", GetActorById(id));
-}
+  get tickEvent(){
+    //TODO Add code for each frame/tick below
+    if (typeof(objects.players[0]) == "number"){
+      if (((0-getObjectById(objects.players[0]).controlledActor.location.y)+this.size.x) >= tileEndPoint){
+        console.log("NEW")
+        tileEndPoint += this.size.x;
+        var newFloor = new FloorTileActor;
+        getObjectById(newFloor.id).location.x = tileEndPoint+this.size.x;
+      }
+    }
+  }
+};
