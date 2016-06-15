@@ -65,6 +65,7 @@ class Actor extends GameObject{
       this.collision.any.left = (this.collision.static.left || this.collision.static.left);
       this.collision.any.right = (this.collision.static.right || this.collision.static.right);
       this.collision.any.center = (this.collision.static.center || this.collision.static.center);
+      this.collision.any.any = (this.collision.any.center || this.collision.any.right || this.collision.any.left || this.collision.any.down || this.collision.any.up)
     }
 
     if (this.simulate){
@@ -171,7 +172,8 @@ Actor.prototype.updateAnimation = function(){
         },
         width: this.size.x,
         height: this.size.y
-      }
+      },
+      rotation: this.rotation
     });
     return "invalid"
   }
@@ -207,7 +209,8 @@ Actor.prototype.updateAnimation = function(){
         },
         width: this.size.x,
         height: this.size.y
-      }
+      },
+      rotation: this.rotation
     });
   }else{
     console.error("Animation: Invalid animation to play (", this.animation.animations[this.animation.playing], ")");

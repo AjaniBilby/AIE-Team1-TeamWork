@@ -2,12 +2,16 @@ var render = {
   layers: []
 };
 
-render.DrawSection = function(image, location, selection){
+render.DrawSection = function(image, location, selection, rotation){
   //Use: DrawSection(image, {x: 100, y: 100}, {start: {x: 0, y: 0}, width: 400, height: 400 })
   if (typeof(image) == "undefined"){
     console.error("Render: undefined draw image ("+image+")");
     return "error";
   };
+
+  if (typeof(rotation) != "number"){
+    location = 0;
+  }
 
   if (typeof(location) != "object"){
     location = {x: 0, y: 0};
@@ -36,18 +40,19 @@ render.DrawSection = function(image, location, selection){
     selection.height = image.height
   }
 
-  tempLocation.x -= selection.width/2;
-  tempLocation.y -= selection.height/2;
 
-  if (tempLocation.x+selection.width<0 || tempLocation.x>canvas.width || tempLocation.y+selection.height<0 || tempLocation.y>canvas.height){
+  if (tempLocation.x+selection.width<0 || tempLocation.x-selection.width>canvas.width || tempLocation.y+selection.height<0 || tempLocation.y-selection.height>canvas.height){
     return;
   }
-
-  context.drawImage(image, selection.start.x, selection.start.y, selection.width, selection.height, tempLocation.x, tempLocation.y, selection.width, selection.height);
+  context.save();
+  context.translate(tempLocation.x, tempLocation.y);
+  context.rotate(rotation);
+  context.drawImage(image, selection.start.x, selection.start.y, selection.width, selection.height, -selection.width/2, -selection.height/2, selection.width, selection.height);
+  context.restore();
 };
 
 render.AddRender = function(zorder, imageData){
-  if (render.layers[zorder] != "object"){
+  if (typeof(render.layers[zorder]) != "object"){
     render.layers[zorder] = [];
   }
   render.layers[zorder].push(imageData);
@@ -56,7 +61,7 @@ render.AddRender = function(zorder, imageData){
 render.Draw = function(dt){
   for (var l=0; l<render.layers.length; l++){
     for (var i=0; i<render.layers[l].length; i++){
-      render.DrawSection(render.layers[l][i].image, render.layers[l][i].location, render.layers[l][i].selection);
+      render.DrawSection(render.layers[l][i].image, render.layers[l][i].location, render.layers[l][i].selection, render.layers[l][i].rotation);
     }
   }
   render.Reset()
