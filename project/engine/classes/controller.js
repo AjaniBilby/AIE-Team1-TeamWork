@@ -1,5 +1,5 @@
 LoadJS("engine/classes/object.js");
-LoadJS("engine/structures/inputs.js");
+LoadJS("engine/structures/inputHandler.js");
 
 class Controller extends GameObject{
   constructor(callback){
@@ -34,8 +34,8 @@ class Controller extends GameObject{
 
   get update(){
     if (this.takeInputs == true){
-      this.UpdateAxis();
-      this.UpdateActions();
+      //this.UpdateAxis();
+      //this.UpdateActions();
     }
   }
 
@@ -63,20 +63,7 @@ Controller.prototype.unPossess = function(){
   objects.list[idNum].unPossess;
 }
 
-Controller.prototype.UpdateAxis = function(){
-  for(var action=0; action<settings.controls.axises.length; action++){
-    this.axis[settings.controls.axises[action].name] = 0;
-    for (i=0; i<settings.controls.axises[action].inputs.length; i++){
-      if (keyboard.isKeyDown(keyboard[settings.controls.axises[action].inputs[i].key])){
-        this.axis[settings.controls.axises[action].name] += settings.controls.axises[action].inputs[i].value;
-      }
-    }
-    if (isNaN(this.axis[settings.controls.axises[action].name])){
-      this.axis[settings.controls.axises[action].name] = 0;
-    }
-  }
-};
-
+/*
 Controller.prototype.UpdateActions = function(){
   for(var action=0; action<settings.controls.actions.length; action++){
     for (i=0; i<settings.controls.actions[action].inputs.length; i++){
@@ -114,7 +101,7 @@ Controller.prototype.UpdateActions = function(){
     }
   }
 }
-
+*/
 
 
 var index = fs.readdirSync(fileSystem.root+"content/controllers")

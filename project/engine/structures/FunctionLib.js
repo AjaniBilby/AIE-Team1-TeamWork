@@ -1,6 +1,6 @@
 function isOdd(num) { return num % 2;}
 
-function rand(floor, ceil){
+function Rand(floor, ceil){
 	return Math.floor( (Math.random() * (ceil-floor)) +floor);
 };
 

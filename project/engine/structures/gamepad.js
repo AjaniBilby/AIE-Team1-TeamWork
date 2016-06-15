@@ -1,25 +1,25 @@
 var Gamepad = function(){
-  this.A = 0;
-  this.B = 1;
-  this.X = 2;
-  this.Y = 3;
-  this.LEFTSHOULDER = 4;
-  this.RIGHTSHOULDER = 5;
-  this.LEFTTRIGGER = 6;
-  this.RIGHTTRIGGER = 7;
-  this.BACK = 8;
-  this.START = 9;
-  this.LEFTSTICKDOWN = 10;
-  this.RIGHTSTICKDOWN = 11;
-  this.DPADUP = 12;
-  this.DPADDOWN = 13;
-  this.DPADLEFT = 14;
-  this.DPADRIGHT = 15
+  this.GAMEPAD_A = 0;
+  this.GAMEPAD_B = 1;
+  this.GAMEPAD_X = 2;
+  this.GAMEPAD_Y = 3;
+  this.GAMEPAD_LEFTSHOULDER = 4;
+  this.GAMEPAD_RIGHTSHOULDER = 5;
+  this.GAMEPAD_LEFTTRIGGER = 6;
+  this.GAMEPAD_RIGHTTRIGGER = 7;
+  this.GAMEPAD_BACK = 8;
+  this.GAMEPAD_START = 9;
+  this.GAMEPAD_LEFTSTICKDOWN = 10;
+  this.GAMEPAD_RIGHTSTICKDOWN = 11;
+  this.GAMEPAD_DPADUP = 12;
+  this.GAMEPAD_DPADDOWN = 13;
+  this.GAMEPAD_DPADLEFT = 14;
+  this.GAMEPAD_DPADRIGHT = 15
 
-  this.LEFTSTICKX = 0;
-  this.LEFTSTICKY = 1;
-  this.RIGTHSTICKX = 2;
-  this.RIGTHSTICKY = 3;
+  this.GAMEPAD_LEFTSTICKX = 0;
+  this.GAMEPAD_LEFTSTICKY = 1;
+  this.GAMEPAD_RIGTHSTICKX = 2;
+  this.GAMEPAD_RIGTHSTICKY = 3;
 }
 
 Gamepad.prototype.value = function(key, controller){
@@ -27,9 +27,9 @@ Gamepad.prototype.value = function(key, controller){
   if (isNaN(controller) == false){
     controller = 0;
   }
-  if ((navigator.getGamepads()[controller] != undefined)){
+  if ((typeof(navigator.getGamepads()[controller]) == "object")){
     if (key.indexOf("STICK") != -1 && key.indexOf("DOWN") == -1){
-      var value = navigator.getGamepads()[controller].axis[this[key]];
+      var value = navigator.getGamepads()[controller].axes[this[key]];
       if (Math.abs(value) < 0.1){
         value = 0;
       }
