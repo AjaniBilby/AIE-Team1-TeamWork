@@ -1,6 +1,7 @@
 var objects = {
   list: [],
-  types: []
+  types: [],
+  players: []
 }
 
 class GameObject{
@@ -8,9 +9,19 @@ class GameObject{
     this.type = type;
     this.id = objects.list.length;
     this.customUpdate = [];
-    objects.list.push(this)
+    objects.list.push(this);
+
+    if (type == "controller"){
+      objects.players.push(this.id)
+    }
   }
-  get update(){}
+  get update(){
+
+  };
+}
+
+function getObjectById(id){
+  return objects.list[id];
 }
 
 objects.UpdateAll = function(){

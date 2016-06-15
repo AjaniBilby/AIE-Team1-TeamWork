@@ -94,8 +94,9 @@ class InputManager extends GameObject{
 InputManager.prototype.getAxis = function(name){
   var value = 0;
   if (typeof(this.axises[name]) != "undefined"){
-    value = this.axises[name].value;
+    value = this.axises[name];
   }
+  console.log(name, value)
   if (isNaN(value)){
     value = 0;
   }
