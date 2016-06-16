@@ -16,7 +16,11 @@ class Controller extends GameObject{
   }
 
   get controlledActor(){
-    return objects.list[this.controlledActorID]
+    if (typeof(this.controlledActorID) != "number"){
+      return null
+    }else{
+      return objects.list[this.controlledActorID]
+    }
   }
 
   get hasControl(){

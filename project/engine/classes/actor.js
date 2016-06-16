@@ -14,7 +14,7 @@ class Actor extends GameObject{
     this.velocity = new Vector2();
     this.drag = 0.99;
     this.movementSpeed = 10;
-    this.bounce = 0.5;
+    this.bounce = 0;
     this.pVel = new Vector2();
     this.acceleration = new Vector2();
     this.collides = {
@@ -41,8 +41,9 @@ class Actor extends GameObject{
 
   get update(){
     this.tickEvent
-    if (this.collides.static){
+    if (this.collides.static == true && this.collides.any == true){
       var data = TestCollision(this.location, this.size);
+      //console.log(data)
       //Is there a new change?
       this.collision.static.new.up = (this.collision.static.up!=data.up);
       this.collision.static.new.down = (this.collision.static.down!=data.down);
@@ -58,7 +59,7 @@ class Actor extends GameObject{
       this.collision.static.right = data.right;
       this.collision.static.center = data.center;
     }
-    if (this.collides.any){
+    if (this.collides.any == true){
       //Update collision values
       this.collision.any.up = (this.collision.static.up || this.collision.static.up);
       this.collision.any.down = (this.collision.static.down || this.collision.static.down);
@@ -70,11 +71,11 @@ class Actor extends GameObject{
 
     if (this.simulate){
       //Calculate bounce
-      if ((this.collision.any.up && this.velocity.x < 0) || (this.collision.any.down && this.velocity.x > 0)){
-        this.velocity *= -this.bounce;
+      if ((this.collision.any.up && this.velocity.y < 0) || (this.collision.any.down && this.velocity.y > 0)){
+        this.velocity.y *= -this.bounce;
       }
-      if ((this.collision.any.right && this.velocity.y < 0) || (this.collision.any.left && this.velocity.y > 0)){
-        this.velocity *= -this.bounce;
+      if ((this.collision.any.right && this.velocity.x < 0) || (this.collision.any.left && this.velocity.x > 0)){
+        this.velocity.x *= -this.bounce;
       }
 
       //Calculate velocity and acceleration
@@ -105,6 +106,14 @@ class Actor extends GameObject{
       }
     }
     return null;
+  }
+
+  get destroy(){
+    if (this.controller != null){
+      this.controller.dePosses;
+      this.controller.controlledActorID = null;
+      objects.list[this.id] = ""
+    }
   }
 
   set controllerID(value){

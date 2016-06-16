@@ -45,47 +45,49 @@ class InputManager extends GameObject{
 
     //Update actions
     for(var action=0; action<settings.controls.actions.length; action++){
+      //Check if the action is setup
+      if (typeof(this.actions[settings.controls.actions[action].name]) == "undefined"){
+        this.actions[settings.controls.actions[action].name] = {};
+      }
+      if (typeof(this.actions[settings.controls.actions[action].name].down) == "undefined"){
+        this.actions[settings.controls.actions[action].name].down = false;
+      }
+      if (typeof(this.actions[settings.controls.actions[action].name].press) == "undefined"){
+        this.actions[settings.controls.actions[action].name].press = false;
+      }
+      if (typeof(this.actions[settings.controls.actions[action].name].release) == "undefined"){
+        this.actions[settings.controls.actions[action].name].release = false;
+      }
+      var buttonDown = false;
       for (i=0; i<settings.controls.actions[action].inputs.length; i++){
-        //Check if the action is setup
-        if (typeof(this.actions[settings.controls.actions[action].name]) == "undefined"){
-          this.actions[settings.controls.actions[action].name] = {};
-        }
-        if (typeof(this.actions[settings.controls.actions[action].name].down) == "undefined"){
-          this.actions[settings.controls.actions[action].name].down = false;
-        }
-        if (typeof(this.actions[settings.controls.actions[action].name].press) == "undefined"){
-          this.actions[settings.controls.actions[action].name].press = false;
-        }
-        if (typeof(this.actions[settings.controls.actions[action].name].release) == "undefined"){
-          this.actions[settings.controls.actions[action].name].release = false;
-        }
-        //Change down press and release values for actions
-        var buttonDown = false;
-        var key = settings.controls.actions[action].inputs[i];
-        if (key.indexOf("KEY_") != -1){
-          buttonDown = keyboard.isKeyDown(keyboard[settings.controls.actions[action].inputs[i]]);
-        }else if (key.indexOf("MOUSE_") != -1){
+        if (buttonDown == false){
+          //Change down press and release values for actions
+          var key = settings.controls.actions[action].inputs[i];
+          if (key.indexOf("KEY_") != -1){
+            buttonDown = keyboard.isKeyDown(keyboard[settings.controls.actions[action].inputs[i]]);
+          }else if (key.indexOf("MOUSE_") != -1){
 
-        }else if (key.indexOf("GAMEPAD_") != -1){
-          buttonDown = (Math.abs(gamePad.value(settings.controls.axises[action].inputs[i].key, 0).value) > 0.5);
-        }
-        if (buttonDown){
-          this.actions[settings.controls.actions[action].name].release = false;
-          if (this.actions[settings.controls.actions[action].name].press == false && this.actions[settings.controls.actions[action].name].down == false){
-            this.actions[settings.controls.actions[action].name].press = true;
-          }else{
-            this.actions[settings.controls.actions[action].name].press = false;
+          }else if (key.indexOf("GAMEPAD_") != -1){
+            buttonDown = (Math.abs(gamePad.value(settings.controls.axises[action].inputs[i].key, 0).value) > 0.5);
           }
-          this.actions[settings.controls.actions[action].name].down = true;
+        }
+      }
+      if (buttonDown){
+        this.actions[settings.controls.actions[action].name].release = false;
+        if (this.actions[settings.controls.actions[action].name].press == false && this.actions[settings.controls.actions[action].name].down == false){
+          this.actions[settings.controls.actions[action].name].press = true;
         }else{
           this.actions[settings.controls.actions[action].name].press = false;
-          if (this.actions[settings.controls.actions[action].name].release == false && this.actions[settings.controls.actions[action].name].down == true){
-            this.actions[settings.controls.actions[action].name].release = true;
-          }else{
-            this.actions[settings.controls.actions[action].name].release = false;
-          }
-          this.actions[settings.controls.actions[action].name].down = false;
         }
+        this.actions[settings.controls.actions[action].name].down = true;
+      }else{
+        this.actions[settings.controls.actions[action].name].press = false;
+        if (this.actions[settings.controls.actions[action].name].release == false && this.actions[settings.controls.actions[action].name].down == true){
+          this.actions[settings.controls.actions[action].name].release = true;
+        }else{
+          this.actions[settings.controls.actions[action].name].release = false;
+        }
+        this.actions[settings.controls.actions[action].name].down = false;
       }
     }
   }
@@ -112,5 +114,5 @@ InputManager.prototype.getAction = function(name){
   return value;
 }
 
-var control = new InputManager()
+var control = new InputManager
 console.log(control.getAxis("cat"));

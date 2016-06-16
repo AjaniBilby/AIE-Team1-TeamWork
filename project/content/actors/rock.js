@@ -21,6 +21,9 @@ class RockActor extends Actor{
     }
     this.buildAnimation("idle", 0, 1, true, 1);
     this.playAnimation("idle");
+    this.collides.static = false;
+    this.collides.any = false;
+    this.simulate = false;
   }
 
   get tickEvent(){

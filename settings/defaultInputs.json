@@ -4,6 +4,6 @@
     {"name": "MoveForward", "inputs": [{"key": "KEY_W", "value": -1}, {"key": "KEY_S", "value": 1}, {"key": "GAMEPAD_LEFTSTICKY", "value": 1}]}
   ],
   "actions": [
-    {"name": "Inventory", "inputs": ["KEY_I"]}
+    {"name": "Restart", "inputs": ["KEY_R", "KEY_SPACE", "GAMEPAD_A"]}
   ]
 }

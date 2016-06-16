@@ -26,7 +26,9 @@ function getObjectById(id){
 
 objects.UpdateAll = function(){
   for (var object=0; object<objects.list.length; object++){
-    objects.list[object].update;
+    if (typeof(objects.list[object]) == "object"){
+      objects.list[object].update;
+    }
   }
 }
 

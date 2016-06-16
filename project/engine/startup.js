@@ -7,3 +7,4 @@ LoadJS("engine/classes/inputHandler.js");
 LoadJS("engine/classes/controller.js")
 LoadJS("engine/classes/actor.js");
 new FloorTileActor
+new PlayerController
