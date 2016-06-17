@@ -65,7 +65,7 @@ setTimeout(function () {
   startup = false;
 }, 2000);
 var startImage = document.createElement("img");
-startImage.src = "./content/gameIcon.png";
+startImage.src = "./content/startup.png";
 
 function run(){
   //Handel Delta
