@@ -24,7 +24,8 @@ class RockActor extends Actor{
         this.size.y = 20;
     }
     AddStaticCollision(this.location, this.size);
-    this.location.x -= worldCollision.tileSize/4
+    this.location.y += this.size.y/2
+    this.location.x += this.size.x/4
     this.buildAnimation("idle", 0, 1, true, 1);
     this.playAnimation("idle");
     this.collides.static = false;

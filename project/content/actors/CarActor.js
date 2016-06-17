@@ -13,6 +13,8 @@ class CarActor extends Actor{
     this.dead = false;
     this.drag = 0.99;
     this.maxVel = 10;
+    this.respawning = true;
+    setTimeout(function(){this.respawning = false;}, 500);
   }
 
   get tickEvent(){
@@ -34,20 +36,21 @@ class CarActor extends Actor{
         this.velocity.x /= this.drag;
         this.velocity.y /= this.drag;
       }
-      if (camera.location.y+(canvas.height/2) < this.location.y){
-        this.location.y -= canvas.height
-      }
-      if (canvas.width/2 < this.location.x){
-        this.location.x = -canvas.width/2;
-      }
-      if (-canvas.width/2 > this.location.x){
-        this.location.x = canvas.width/2;
+      if (this.respawning){
+        if (camera.location.y+(canvas.height/2) < this.location.y){
+          this.location.y = camera.location.y+(canvas.height/2)
+        }
+        if (canvas.width/2 < this.location.x){
+          this.location.x = -canvas.width/2;
+        }
+        if (-canvas.width/2 > this.location.x){
+          this.location.x = canvas.width/2;
+        }
       }
     }
-
     if (this.collision.any.any){
-      //this.dead = true;
-      //this.destroy;
+      this.dead = true;
+      this.destroy;
     }
   }
 
