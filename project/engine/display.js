@@ -99,6 +99,7 @@ function run(){
       }
     }
   }else{
+    var ratio = startImage.height/canvas.height
     render.AddRender(10, {
       image: startImage,
       location: {x: 0, y: 0},
@@ -112,6 +113,7 @@ function run(){
       },
       rotation: 0
     });
+    render.AddText("Slapping Buns...", 28, {x: canvas.width/2, y: canvas.height-32}, 10, "center", "white");
   }
   render.Draw();
 };
