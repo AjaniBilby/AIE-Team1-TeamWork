@@ -2,30 +2,52 @@ class CarActor extends Actor{
   constructor(){
     super()
     //TODO Add code for eventPlay/onSpawn below
-    this.movementSpeed = 800;
+    this.movementSpeed = 0.2;
     //I am controlled by GetActorById(id).controlledActorID
     //Getting a controller input value  GetControllerById(GetActorById(id).controlledActorID).axis["MoveForward"]
-    this.animation.image.src = "./content/sprites/TestAnim.png";
-    this.buildAnimation("idle", 0, 2, true, 0.5);
+    this.animation.image.src = "./content/sprites/ship.png";
+    this.size.x = 93;
+    this.size.y = 80;
+    this.buildAnimation("idle", 0, 1, true, 0.5);
     this.playAnimation("idle")
-    this.dead = false
+    this.dead = false;
+    this.drag = 0.99;
+    this.maxVel = 10;
   }
 
   get tickEvent(){
     //TODO Add code for each frame/tick below
-    console.log(this.controllerID)
     if (isNaN(this.controllerID) == false && !this.dead){
-      camera.location.y = this.location.y;
+      if (camera.location.y > this.location.y){
+        camera.location.y = this.location.y;
+      }
 
       var movementInput = new Vector2(control.getAxis("MoveRight"), control.getAxis("MoveForward"));
-      movementInput.Normalize();
-      this.velocity.x += movementInput.x*this.movementSpeed;
-      this.velocity.y += movementInput.y*this.movementSpeed;
+      this.rotation += movementInput.x*dt*5;
+      if (movementInput.y != 0){
+        var direction = {
+          x:(0 * Math.cos(this.rotation)) - (1 * Math.sin(this.rotation)),
+          y:(0 * Math.cos(this.rotation)) + (1 * Math.cos(this.rotation))
+        };
+        this.velocity.x += movementInput.y*this.movementSpeed*direction.x;
+        this.velocity.y += movementInput.y*this.movementSpeed*direction.y;
+        this.velocity.x /= this.drag;
+        this.velocity.y /= this.drag;
+      }
+      if (camera.location.y+(canvas.height/2) < this.location.y){
+        this.location.y -= canvas.height
+      }
+      if (canvas.width/2 < this.location.x){
+        this.location.x = -canvas.width/2;
+      }
+      if (-canvas.width/2 > this.location.x){
+        this.location.x = canvas.width/2;
+      }
     }
 
     if (this.collision.any.any){
-      this.dead = true;
-      this.destroy;
+      //this.dead = true;
+      //this.destroy;
     }
   }
 

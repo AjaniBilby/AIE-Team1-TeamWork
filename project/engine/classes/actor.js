@@ -14,6 +14,7 @@ class Actor extends GameObject{
     this.velocity = new Vector2();
     this.drag = 0.99;
     this.movementSpeed = 10;
+    this.maxVel = 20;
     this.bounce = 0;
     this.pVel = new Vector2();
     this.acceleration = new Vector2();
@@ -79,13 +80,15 @@ class Actor extends GameObject{
       }
 
       //Calculate velocity and acceleration
-      this.velocity.x *= this.drag*dt;
-      this.velocity.y *= this.drag*dt;
+      this.velocity.x *= this.drag;
+      this.velocity.y *= this.drag;
       this.acceleration.x = this.velocity.x-this.pVel.x;
       this.acceleration.y = this.velocity.y-this.pVel.y;
       this.pVel = this.velocity;
       this.location.x += this.velocity.x;
-      this.location.y += this.velocity.y
+      this.location.y += this.velocity.y;
+      this.velocity.x = Clamp(this.velocity.x, -this.maxVel, this.maxVel);
+      this.velocity.y = Clamp(this.velocity.y, -this.maxVel, this.maxVel);
     }
     this.updateAnimation()
     return;
