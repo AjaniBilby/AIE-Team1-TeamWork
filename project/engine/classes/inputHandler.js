@@ -68,7 +68,7 @@ class InputManager extends GameObject{
           }else if (key.indexOf("MOUSE_") != -1){
 
           }else if (key.indexOf("GAMEPAD_") != -1){
-            buttonDown = (Math.abs(gamePad.value(settings.controls.axises[action].inputs[i].key, 0).value) > 0.5);
+            buttonDown = (Math.abs(gamePad.value(settings.controls.actions[action].inputs[i], 0).value) > 0.5);
           }
         }
       }
@@ -108,11 +108,8 @@ InputManager.prototype.getAction = function(name){
   var value = {down: false, pressed: false, released: false};
   if (typeof(this.actions[name]) != "undefined"){
     value.down = this.actions[name].down == true;
-    value.down = this.actions[name].pressed == true;
-    value.down = this.actions[name].released == true;
+    value.press = this.actions[name].press == true;
+    value.release = this.actions[name].release == true;
   }
   return value;
 }
-
-var control = new InputManager
-console.log(control.getAxis("cat"));

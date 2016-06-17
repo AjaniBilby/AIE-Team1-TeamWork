@@ -13,6 +13,7 @@ class Controller extends GameObject{
   }
 
   get update(){
+    this.tickEvent;
   }
 
   get controlledActor(){

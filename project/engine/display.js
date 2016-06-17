@@ -72,7 +72,7 @@ function run(){
   }
 
   //Fill Background
-  context.fillStyle = "rgba(0, 100, 255, 1)";
+  context.fillStyle = "rgba(0, 0, 0, 0.7)";
   context.fillRect(0, 0, canvas.width, canvas.height);
 
   if (fileSystem.currentlyLoading > 0){

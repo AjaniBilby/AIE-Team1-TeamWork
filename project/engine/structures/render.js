@@ -55,13 +55,71 @@ render.AddRender = function(zorder, imageData){
   if (typeof(render.layers[zorder]) != "object"){
     render.layers[zorder] = [];
   }
+  imageData.type = "image"
   render.layers[zorder].push(imageData);
 };
 
+render.AddText = function(content, size, position, zorder, alignment, color, font){
+  var data = {};
+
+  if (typeof(zorder) != "number"){
+    zorder = 0;
+  }
+  if (typeof(font) != "string"){
+    font = "Arial";
+  }
+  if (typeof(color) != "string"){
+    color = "black";
+  }
+  if (typeof(size) != "number"){
+    size = 6;
+  }
+  if (typeof(alignment) != "string"){
+    alignment = "right";
+  }
+  alignment = Clamp(alignment, 0, 2);
+
+  if (typeof(position) != "object"){
+    position = {x: 0, y: 0};
+  }else{
+    if (typeof(position.x) != "number"){
+      position.x = 0;
+    }
+    if (typeof(position.y) != "number"){
+      position.y = 0;
+    }
+  }
+  data.position = position;
+  data.content = content;
+  data.size = size;
+  data.font = font;
+  data.alignment = alignment;
+  data.color = color
+
+  if (typeof(render.layers[zorder]) != "object"){
+    render.layers[zorder] = [];
+  }
+  data.type = "text"
+  render.layers[zorder].push(data);
+}
+
+render.DrawText = function(data){
+  context.fillStyle = data.color;
+  context.font = data.size+"px "+data.font;
+  context.textAlign = data.alignment;
+  context.fillText(data.content, data.position.x, data.position.y+data.size/2)
+}
+
 render.Draw = function(dt){
   for (var l=0; l<render.layers.length; l++){
-    for (var i=0; i<render.layers[l].length; i++){
-      render.DrawSection(render.layers[l][i].image, render.layers[l][i].location, render.layers[l][i].selection, render.layers[l][i].rotation);
+    if (typeof(render.layers[l]) == "object"){
+      for (var i=0; i<render.layers[l].length; i++){
+        if (render.layers[l][i].type == "image"){
+          render.DrawSection(render.layers[l][i].image, render.layers[l][i].location, render.layers[l][i].selection, render.layers[l][i].rotation);
+        }else if (render.layers[l][i].type == "text"){
+          render.DrawText(render.layers[l][i]);
+        }
+      }
     }
   }
   render.Reset()

@@ -1,4 +1,4 @@
-var tileEndPoint = 0;
+var tileEndPoint = 2000;
 
 class FloorTileActor extends Actor{
   constructor(){
@@ -9,29 +9,26 @@ class FloorTileActor extends Actor{
     this.collides.static = false;
     this.collides.any = false;
     this.simulate = false;
+    this.hasSpawnedChild = false;
     //TODO Add code for eventPlay/onSpawn below
 
-    var numRocks = Rand(50, 10*tileEndPoint/2000);
+    var numRocks = Rand(tileEndPoint/2000, 15*tileEndPoint/2000);
     for (var i=0; i<numRocks; i++){
-      var newRock = new RockActor;
-      var tempLocation = {
-        x: ((Math.round(Rand(-this.size.x/2, this.size.x/2)/worldCollision.tileSize))*worldCollision.tileSize),
-        y: (Math.round((Rand(-this.size.x/2, this.size.x/2)-tileEndPoint)/worldCollision.tileSize)*worldCollision.tileSize)
-      }
-      getObjectById(newRock.id).location.x = tempLocation.x;
-      getObjectById(newRock.id).location.y = tempLocation.y;
-      AddStaticCollision(tempLocation, getObjectById(newRock.id).size);
-      getObjectById(newRock.id).location.y += newRock.size.y/4;
+      var newRock = new RockActor({x: Rand(-this.size.x/2, this.size.x/2), y: Rand(-this.size.x/2, this.size.x/2)-tileEndPoint});
     }
   }
 
   get tickEvent(){
     //TODO Add code for each frame/tick below
-    if (typeof(objects.players[0]) == "number"){
-      if (((0-getObjectById(objects.players[0]).controlledActor.location.y)+this.size.x) >= tileEndPoint){
-        tileEndPoint += this.size.x;
-        var newFloor = new FloorTileActor;
-        getObjectById(newFloor.id).location.x = tileEndPoint+this.size.x;
+    if (!this.hasSpawnedChild){
+      if (typeof(objects.players[0]) == "number"){
+        if (typeof(getObjectById(objects.list[objects.players[0]].controlledActorID)) == "object"){
+          if (((0-getObjectById(objects.players[0]).controlledActor.location.y)+this.size.x) >= tileEndPoint){
+            tileEndPoint += this.size.x;
+            var newFloor = new FloorTileActor;
+            getObjectById(newFloor.id).location.y = tileEndPoint+this.size.x;
+          }
+        }
       }
     }
   }

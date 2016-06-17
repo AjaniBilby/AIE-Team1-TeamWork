@@ -4,6 +4,7 @@ LoadJS("engine/structures.js");
 LoadJS("engine/display.js");
 LoadJS("engine/classes/object.js");
 LoadJS("engine/classes/inputHandler.js");
+var control = new InputManager
 LoadJS("engine/classes/controller.js")
 LoadJS("engine/classes/actor.js");
 new FloorTileActor

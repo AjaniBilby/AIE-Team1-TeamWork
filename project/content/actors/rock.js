@@ -1,9 +1,13 @@
 class RockActor extends Actor{
-  constructor(){
+  constructor(location){
     super()
+    this.location.x = location.x;
+    this.location.y = location.y;
+    this.location.x = Math.round((this.location.x/worldCollision.tileSize)*worldCollision.tileSize);
+    this.location.y = Math.round((this.location.y/worldCollision.tileSize)*worldCollision.tileSize);
     //TODO Add code for eventPlay/onSpawn below
     this.rotation = Math.random()*2-1;
-    switch (Rand(0, 3)) {
+    switch (2) {
       case 1:
         this.animation.image.src = "./content/sprites/rock_medium.png";
         this.size.x = 40;
@@ -19,6 +23,8 @@ class RockActor extends Actor{
         this.size.x = 22;
         this.size.y = 20;
     }
+    AddStaticCollision(this.location, this.size);
+    this.location.x -= worldCollision.tileSize/4
     this.buildAnimation("idle", 0, 1, true, 1);
     this.playAnimation("idle");
     this.collides.static = false;

@@ -31,8 +31,3 @@ objects.UpdateAll = function(){
     }
   }
 }
-
-function test(){
-  var controller = new PlayerController();
-  console.log(controller.controlledActor.velocity.x)
-}
