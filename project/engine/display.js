@@ -60,6 +60,12 @@ function ScreenToWorld(screenLocation){
 var dt = 0.0;
 var lastTick = Date.now();
 var MAXFRAMECOUNT = 60;
+var startup = true;
+setTimeout(function () {
+  startup = false;
+}, 2000);
+var startImage = document.createElement("img");
+startImage.src = "./content/gameIcon.png";
 
 function run(){
   //Handel Delta
@@ -86,10 +92,26 @@ function run(){
     return;
   }
 
-  if (typeof(objects) == "object"){
-    if (typeof(objects.UpdateAll) == "function"){
-      objects.UpdateAll()
+  if (!startup){
+    if (typeof(objects) == "object"){
+      if (typeof(objects.UpdateAll) == "function"){
+        objects.UpdateAll()
+      }
     }
+  }else{
+    render.AddRender(10, {
+      image: startImage,
+      location: {x: 0, y: 0},
+      selection: {
+        start: {
+          x: 0,
+          y: 0
+        },
+        width: startImage.width,
+        height: startImage.height
+      },
+      rotation: 0
+    });
   }
   render.Draw();
 };

@@ -30,7 +30,7 @@ Gamepad.prototype.value = function(key, controller){
   if ((typeof(navigator.getGamepads()[controller]) == "object")){
     if (key.indexOf("STICK") != -1 && key.indexOf("DOWN") == -1){
       var value = navigator.getGamepads()[controller].axes[this[key]];
-      if (Math.abs(value) < 0.1){
+      if (Math.abs(value) < 0.12){
         value = 0;
       }
       return {pressed: (value!=0), value: value};

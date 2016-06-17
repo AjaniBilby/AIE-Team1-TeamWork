@@ -4,7 +4,6 @@ class CarActor extends Actor{
     //TODO Add code for eventPlay/onSpawn below
     this.movementSpeed = 0.2;
     //I am controlled by GetActorById(id).controlledActorID
-    //Getting a controller input value  GetControllerById(GetActorById(id).controlledActorID).axis["MoveForward"]
     this.animation.image.src = "./content/sprites/ship.png";
     this.size.x = 93;
     this.size.y = 80;
@@ -49,6 +48,7 @@ class CarActor extends Actor{
       }
     }
     if (this.collision.any.any){
+      camera.location.y = 0;
       this.dead = true;
       this.destroy;
     }
