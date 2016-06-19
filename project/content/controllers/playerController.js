@@ -33,6 +33,7 @@ class PlayerController extends Controller{
         render.AddText("Highscore: "+highscore, 14, {x: canvas.width/2, y: canvas.height/2+50}, 10, "center", "white");
       }else{
         render.AddText("You Died", 25, {x: canvas.width/2, y: canvas.height/2}, 10, "center", "white");
+        render.AddText("Highscore: "+highscore, 14, {x: canvas.width/2, y: canvas.height/2+50}, 10, "center", "white");
       }
       render.AddText("Score: "+this.score, 14, {x: canvas.width/2, y: canvas.height/2+100}, 10, "center", "white");
 
@@ -58,6 +59,7 @@ class PlayerController extends Controller{
     if (this.score > highscore){
       this.isHighScore = true;
       highscore = this.score;
+      fs.writeFileSync(SAVELOCATION+"/score.json", JSON.stringify({"highscore": highscore}))
     }
   }
 }
